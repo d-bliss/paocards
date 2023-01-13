@@ -17,8 +17,6 @@ app = Flask(__name__)
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
-# Custom filter for formatting currency values
-app.jinja_env.filters["usd"] = usd
 
 # Configure session to use filesystem (instead of signed cookies)
 app.config["SESSION_PERMANENT"] = False
@@ -27,10 +25,6 @@ Session(app)
 
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///finance.db")
-
-# Make sure API key is set
-if not os.environ.get("API_KEY"):
-    raise RuntimeError("API_KEY not set")
 
 
 @app.after_request
@@ -60,7 +54,7 @@ def index():
     # Get user's cash balance
     cash_db = db.execute("SELECT cash FROM users WHERE id = ?", user_id)
     cash = cash_db[0]["cash"]
-    
+
     return render_template("index.html", database=transactions_db, cash=cash)
 
 
