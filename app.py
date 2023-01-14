@@ -65,7 +65,6 @@ def create():
     if request.method == "GET":
         return render_template("create.html")
     else:
-        # Process form submission
         suit = request.form.get("suit")
         cards = ["{} of {}".format(rank, suit) for rank in ['Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King']]
         for card in cards:
@@ -77,7 +76,6 @@ def create():
                        session["user_id"], card, person, action, object)
         flash("Custom parameters for cards created!")
         return redirect("/")
-
 
 
 
