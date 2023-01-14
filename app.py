@@ -52,24 +52,27 @@ def index():
 @app.route("/create", methods=["GET", "POST"])
 @login_required
 def create():
-    if request.method == "GET":
-        # Render form for selecting suit
-        return render_template("create.html")
-    else:
+    if request.method == "POST":
         suit = request.form.get("suit")
         cards = ["{} of {}".format(rank, suit) for rank in ['Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King']]
-        for card in cards:
-            person = request.form.get(card + "-person")
-            action = request.form.get(card + "-action")
-            object = request.form.get(card + "-object")
-            if person and action and object:
+
+        # check if the form is submitted for the second time
+        if request.form.get("custom_parameters_form"):
+            for card in cards:
+                person = request.form.get(card + "-person")
+                action = request.form.get(card + "-action")
+                object = request.form.get(card + "-object")
+
                 # Insert custom parameters into database
                 db.execute("INSERT INTO custom_parameters (user_id, card, person, action, object) VALUES (?,?,?,?,?)",
                            session["user_id"], card, person, action, object)
-            else:
-                flash("Please fill out all the fields")
-                return redirect("/create")
-        flash("Custom parameters for cards created!")
+            flash("Custom parameters for cards created!")
+            return redirect("/")
+        else:
+            return render_template("create.html", cards=cards)
+    else:
+        return render_template("create.html")
+
 
 
 
