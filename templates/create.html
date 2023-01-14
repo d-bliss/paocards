@@ -8,28 +8,32 @@ Create
 <h1 class="text-danger">Create Cards</h1>
 <form action="/create" method="post">
     <div class="form-group">
-        <label for="card">Card</label>
-        <select class="form-control" name="card" required>
-            {% for suit in suits %}
-            {% for rank in ranks %}
-            <option value="{{rank}} of {{suit}}">{{rank}} of {{suit}}</option>
-            {% endfor %}
-            {% endfor %}
+        <label for="suit">Select Suit</label>
+        <select class="form-control" name="suit" required>
+            <option value="Spades">Spades</option>
+            <option value="Hearts">Hearts</option>
+            <option value="Diamonds">Diamonds</option>
+            <option value="Clubs">Clubs</option>
         </select>
     </div>
-    <div class="form-group">
-        <label for="person">Person</label>
-        <input type="text" class="form-control" name="person" required>
-    </div>
-    <div class="form-group">
-        <label for="action">Action</label>
-        <input type="text" class="form-control" name="action" required>
-    </div>
-    <div class="form-group">
-        <label for="object">Object</label>
-        <input type="text" class="form-control" name="object" required>
-    </div>
-    <button class="btn btn-primary" type="submit">Create</button>
-</form>
-{% endblock %}
+    <form id="custom-parameters-form" style="display:none">
+        {% for card in cards %}
+        <div class="form-group">
+            <label for="{{ card }}-person">{{ card }} - Person</label>
+            <input type="text" class="form-control" name="{{ card }}-person">
+        </div>
+        <div class="form-group">
+            <label for="{{ card }}-action">{{ card }} - Action</label>
+            <input type="text" class="form-control" name="{{ card }}-action">
+        </div>
+        <div class="form-group">
+            <label for="{{ card }}-object">{{ card }} - Object</label>
+            <input type="text" class="form-control" name="{{ card }}-object">
+        </div>
+        {% endfor %}
+        <button class="btn btn-primary" type="submit">Save</button>
+        </form>
+        </form>
+        {% endblock %}
+
 
