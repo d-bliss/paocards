@@ -61,64 +61,20 @@ def index():
 @app.route("/create", methods=["GET", "POST"])
 @login_required
 def create():
-
-    #create the PAO for each card.
-
     if request.method == "GET":
-        # Render form for stock purchase
+        # Render form for creating custom parameters
         return render_template("create.html")
     else:
         # Process form submission
-        symbol = request.form.get("symbol")
-        shares_str = request.form.get("shares")
+        card = request.form.get("card")
+        person = request.form.get("person")
+        action = request.form.get("action")
+        object = request.form.get("object")
 
-        if not symbol:
-            return apology("Must Give Symbol")
-
-        # Check if shares input is a valid number
-        try:
-            shares = int(shares_str)
-        except ValueError:
-            return apology("Shares must be a number", 400)
-
-        if shares <= 0:
-            return apology("Shares must be a positive number", 400)
-
-        # Lookup stock information
-        stock = lookup(symbol.upper())
-
-        if stock == None:
-            return apology("Symbol Does Not Exist")
-
-        transaction_value = shares * stock["price"]
-
-        user_id = session["user_id"]
-        # Get user's current cash balance
-        user_cash_db = db.execute("SELECT cash FROM users WHERE id = ?", user_id)
-        user_cash = user_cash_db[0]["cash"]
-
-        if user_cash < transaction_value:
-            return apology("Not Enough Money")
-
-        # Calculate updated cash balance after purchase
-        uptd_cash = user_cash - transaction_value
-
-        #total = shares * price
-
-        # Update user's cash balance in database
-        db.execute("UPDATE users SET cash = ? WHERE id = ?", uptd_cash, user_id)
-
-        # Get current date and time
-        date = datetime.datetime.now()
-
-        # Insert transaction into database
-        db.execute(
-            "INSERT INTO transactions (user_id, symbol, shares, price, date) VALUES (?, ?, ?, ?, ?)",
-            user_id, stock["symbol"], shares, stock["price"], date
-        )
-
-        flash("Cards!")
-
+        # Insert custom parameters into database
+        db.execute("INSERT INTO custom_parameters (user_id, card, person, action, object) VALUES (?,?,?,?,?)",
+                   session["user_id"], card, person, action, object)
+        flash("Custom parameters for card created!")
         return redirect("/")
 
 
