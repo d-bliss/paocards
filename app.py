@@ -12,10 +12,6 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import apology, login_required
 
 
-suits = ['Spades', 'Hearts', 'Diamonds', 'Clubs']
-ranks = ['Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King']
-
-
 # Configure application
 app = Flask(__name__)
 
@@ -63,26 +59,20 @@ def index():
     return render_template("index.html", database=transactions_db, cash=cash)
 
 
-@app.route("/create", methods=["GET", "POST"])
+@app.route("/create", methods=["POST"])
 @login_required
 def create():
-    suits = ['Spades', 'Hearts', 'Diamonds', 'Clubs']
-    ranks = ['Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King']
-    if request.method == "GET":
-        # Render form for creating custom parameters
-        return render_template("create.html")
-    else:
-        # Process form submission
-        card = request.form.get("card")
-        person = request.form.get("person")
-        action = request.form.get("action")
-        object = request.form.get("object")
-
+    suit = request.form.get("suit")
+    cards = ["{} of {}".format(rank, suit) for rank in ['Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King']]
+    for card in cards:
+        person = request.form.get(card + "-person")
+        action = request.form.get(card + "-action")
+        object = request.form.get(card + "-object")
         # Insert custom parameters into database
         db.execute("INSERT INTO custom_parameters (user_id, card, person, action, object) VALUES (?,?,?,?,?)",
                    session["user_id"], card, person, action, object)
-        flash("Custom parameters for card created!")
-        return redirect("/")
+    flash("Custom parameters for cards created!")
+    return redirect("/")
 
 
 
