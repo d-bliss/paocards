@@ -11,6 +11,11 @@ from werkzeug.security import check_password_hash, generate_password_hash
 # Import custom modules
 from helpers import apology, login_required
 
+
+suits = ['Spades', 'Hearts', 'Diamonds', 'Clubs']
+ranks = ['Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King']
+
+
 # Configure application
 app = Flask(__name__)
 
