@@ -1,20 +1,35 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Buy
+Create
 {% endblock %}
 
 {% block main %}
-    <h1 class="text-danger">Create Cards</h1>
-    <form action="/create" method="post">
-        <div class="mb-3">
-            <input autocomplete="off" autofocus class="form-control mx-auto w-auto"
-                name="symbol" placeholder="Symbol" type="text" required>
-        </div>
-        <div class="mb-3">
-            <input autocomplete="off" autofocus class="form-control mx-auto w-auto"
-                name="shares" placeholder="Shares" type="number" required>
-        </div>
-        <button class="btn btn-primary" type="submit">Create</button>
-    </form>
+<h1 class="text-danger">Create Cards</h1>
+<form action="/create" method="post">
+    <div class="form-group">
+        <label for="card">Card</label>
+        <select class="form-control" name="card" required>
+            <option value=""></option>
+            <option value="Ace of Spades">Ace of Spades</option>
+            <option value="Two of Spades">Two of Spades</option>
+            ...
+            <option value="King of Clubs">King of Clubs</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="person">Person</label>
+        <input type="text" class="form-control" name="person" required>
+    </div>
+    <div class="form-group">
+        <label for="action">Action</label>
+        <input type="text" class="form-control" name="action" required>
+    </div>
+    <div class="form-group">
+        <label for="object">Object</label>
+        <input type="text" class="form-control" name="object" required>
+    </div>
+    <button class="btn btn-primary" type="submit">Create</button>
+</form>
 {% endblock %}
+
