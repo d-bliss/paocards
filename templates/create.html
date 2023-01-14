@@ -9,7 +9,7 @@ Create
 <form action="/create" method="post">
     <div class="form-group">
         <label for="suit">Select Suit</label>
-        <select class="form-control" name="suit" required>
+        <select class="form-control" name="suit" id="suit-select" required>
             <option value="Spades">Spades</option>
             <option value="Hearts">Hearts</option>
             <option value="Diamonds">Diamonds</option>
@@ -32,8 +32,14 @@ Create
         </div>
         {% endfor %}
         <button class="btn btn-primary" type="submit">Save</button>
-        </form>
+    </form>
 </form>
+<script>
+    document.getElementById("suit-select").addEventListener("change", function () {
+            document.getElementById("custom-parameters-form").style.display = "block";
+        });
+    </script>
 {% endblock %}
+
 
 
