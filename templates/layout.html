@@ -77,9 +77,14 @@
     </main>
 
     <footer class="mb-5 small text-center text-muted">
-        <p>Copyright Bitcoin-N-Beers <span id="year"></span></p>
+        <p>Copyright PAO Cards <span id="year"></span></p>
     </footer>
-
+    <script>
+        // Get the current year
+        const currentYear = new Date().getFullYear();
+        // Update the year in the copyright notice
+        document.getElementById("year").innerHTML = currentYear;
+    </script>
 </body>
 
 </html>
