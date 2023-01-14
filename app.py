@@ -149,12 +149,10 @@ def play():
             return apology("Must give a symbol")
 
         # Lookup stock information
-        try:
-            stock = lookup(symbol.upper())
-        except ValueError:
-            return apology("Invalid symbol")
 
-        if stock is None:
+
+
+        if card is None:
             return apology("Symbol does not exist", 400)
 
     else:
