@@ -25,7 +25,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Configure CS50 Library to use SQLite database
-db = SQL("sqlite:///finance.db")
+db = SQL("sqlite:///xfinal.db")
 
 
 @app.after_request
@@ -45,7 +45,7 @@ def index():
 
     # Show portfolio of stocks.
     user_id = session["user_id"]
-    
+
     return render_template("index.html")
 
 
