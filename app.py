@@ -9,7 +9,7 @@ from tempfile import mkdtemp
 from werkzeug.security import check_password_hash, generate_password_hash
 
 # Import custom modules
-from helpers import apology, login_required, lookup, usd
+from helpers import apology, login_required
 
 # Configure application
 app = Flask(__name__)
@@ -58,15 +58,15 @@ def index():
     return render_template("index.html", database=transactions_db, cash=cash)
 
 
-@app.route("/buy", methods=["GET", "POST"])
+@app.route("/create", methods=["GET", "POST"])
 @login_required
-def buy():
+def create():
 
-    #Buy shares of stock.
+    #create the PAO for each card.
 
     if request.method == "GET":
         # Render form for stock purchase
-        return render_template("buy.html")
+        return render_template("create.html")
     else:
         # Process form submission
         symbol = request.form.get("symbol")
@@ -117,21 +117,21 @@ def buy():
             user_id, stock["symbol"], shares, stock["price"], date
         )
 
-        flash("Purchase complete!")
+        flash("Cards!")
 
         return redirect("/")
 
 
 
-@app.route("/history")
+@app.route("/savedcards")
 @login_required
 def history():
 
-    # Show history of transactions.
+    # Show all of your saved cards.
 
     user_id = session["user_id"]
     transactions_db = db.execute("SELECT * FROM transactions WHERE user_id = ?", user_id)
-    return render_template("history.html", transactions=transactions_db)
+    return render_template("savedcards.html", transactions=transactions_db)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -183,10 +183,10 @@ def logout():
     return redirect("/")
 
 
-@app.route("/quote", methods=["GET", "POST"])
+@app.route("/play", methods=["GET", "POST"])
 @login_required
-def quote():
-    #Get stock quote.
+def play():
+    #Test user for each card.
     # Process form submission
     if request.method == "POST" :
         symbol = request.form.get("symbol")
@@ -203,8 +203,6 @@ def quote():
         if stock is None:
             return apology("Symbol does not exist", 400)
 
-        #return render_template("quoted.html", stock=stock)
-        return render_template("quoted.html", name=stock["name"], symbol=stock["symbol"], price=stock["price"])
     else:
         #request.method == "GET":
         # Render form for stock quote
@@ -264,56 +262,3 @@ def register():
         return render_template("register.html")
 
 
-
-
-@app.route("/sell", methods=["GET", "POST"])
-@login_required
-def sell():
-
-    # Sell shares of stock.
-
-    if request.method == "GET":
-        # Render form for stock sale
-        user_id = session["user_id"]
-        # Get list of unique symbols from user's transactions
-        symbols_db = db.execute("SELECT DISTINCT symbol FROM transactions WHERE user_id = ?", user_id)
-        # Extract just the symbols from the query result
-        symbols = [row["symbol"] for row in symbols_db]
-        return render_template("sell.html", symbols=symbols)
-    else:
-        # Process form submission
-        symbol = request.form.get("symbol")
-        shares = int(request.form.get("shares"))
-
-        if not symbol:
-            return apology("Must Give Symbol")
-
-        # Lookup stock information
-        stock = lookup(symbol.upper())
-
-        if stock == None:
-            return apology("Symbol Does Not Exist")
-
-        user_id = session["user_id"]
-        # Get total number of shares for the selected symbol
-        symbol_db = db.execute("SELECT SUM(shares) as total_shares FROM transactions WHERE user_id = ? AND symbol = ?", user_id, symbol)
-        total_shares = symbol_db[0]["total_shares"]
-
-        if shares > total_shares:
-            return apology("Not Enough Shares")
-
-        transaction_value = shares * stock["price"]
-
-        # Update user's cash balance
-        user_cash_db = db.execute("SELECT cash FROM users WHERE id = ?", user_id)
-        user_cash = user_cash_db[0]["cash"]
-        uptd_cash = user_cash + transaction_value
-        db.execute("UPDATE users SET cash = ? WHERE id = ?", uptd_cash, user_id)
-
-        # Insert transaction into database
-        date = datetime.datetime.now()
-        db.execute("INSERT INTO transactions (user_id, symbol, shares, price, date) VALUES (?, ?, ?, ?, ?)", user_id, stock["symbol"], -shares, stock["price"], date)
-
-        flash("Sold!")
-
-        return redirect("/")

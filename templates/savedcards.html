@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+History
+{% endblock %}
+
+{% block main %}
+<h1 class="text-success">Your Saved Cards</h1>
+<table class="table table-active">
+    <thead>
+        <tr>
+            <th scope="col">Card</th>
+            <th scope="col">Person</th>
+            <th scope="col">Action</th>
+            <th scope="col">Object</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in transactions %}
+        <tr>
+            <td>{{ row["cards"] }}</td>
+            <td>{{ row["person"] }}</td>
+            <td>${{ row["action"] }}</td>
+            <td>{{ row["object"] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

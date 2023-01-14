@@ -5,8 +5,8 @@
 {% endblock %}
 
 {% block main %}
-    <h1 class="text-danger">Buy</h1>
-    <form action="/buy" method="post">
+    <h1 class="text-danger">Create Cards</h1>
+    <form action="/create" method="post">
         <div class="mb-3">
             <input autocomplete="off" autofocus class="form-control mx-auto w-auto"
                 name="symbol" placeholder="Symbol" type="text" required>
@@ -15,6 +15,6 @@
             <input autocomplete="off" autofocus class="form-control mx-auto w-auto"
                 name="shares" placeholder="Shares" type="number" required>
         </div>
-        <button class="btn btn-primary" type="submit">Buy</button>
+        <button class="btn btn-primary" type="submit">Create</button>
     </form>
 {% endblock %}
