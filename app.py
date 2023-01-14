@@ -27,6 +27,9 @@ Session(app)
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///xfinal.db")
 
+suit = ['Spades', 'Hearts', 'Diamonds', 'Clubs']
+rank = ['Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King']
+
 
 @app.after_request
 def after_request(response):
@@ -52,6 +55,8 @@ def index():
 @app.route("/create", methods=["GET", "POST"])
 @login_required
 def create():
+    suit = ['Spades', 'Hearts', 'Diamonds', 'Clubs']
+    rank = ['Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King']
     if request.method == "GET":
         return render_template("create.html")
     else:
