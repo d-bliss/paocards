@@ -160,7 +160,7 @@ def play():
     else:
         #request.method == "GET":
         # Render form for stock quote
-        return render_template("quote.html")
+        return render_template("index.html")
 
 
 
