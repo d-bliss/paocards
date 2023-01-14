@@ -27,9 +27,6 @@ Session(app)
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///xfinal.db")
 
-suit = ['Spades', 'Hearts', 'Diamonds', 'Clubs']
-rank = ['Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King']
-
 
 @app.after_request
 def after_request(response):
@@ -55,9 +52,8 @@ def index():
 @app.route("/create", methods=["GET", "POST"])
 @login_required
 def create():
-    suit = ['Spades', 'Hearts', 'Diamonds', 'Clubs']
-    rank = ['Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King']
     if request.method == "GET":
+        # Render form for selecting suit
         return render_template("create.html")
     else:
         suit = request.form.get("suit")
@@ -66,11 +62,15 @@ def create():
             person = request.form.get(card + "-person")
             action = request.form.get(card + "-action")
             object = request.form.get(card + "-object")
-            # Insert custom parameters into database
-            db.execute("INSERT INTO custom_parameters (user_id, card, person, action, object) VALUES (?,?,?,?,?)",
-                       session["user_id"], card, person, action, object)
+            if person and action and object:
+                # Insert custom parameters into database
+                db.execute("INSERT INTO custom_parameters (user_id, card, person, action, object) VALUES (?,?,?,?,?)",
+                           session["user_id"], card, person, action, object)
+            else:
+                flash("Please fill out all the fields")
+                return redirect("/create")
         flash("Custom parameters for cards created!")
-        return redirect("/")
+
 
 
 
