@@ -66,6 +66,8 @@ def index():
 @app.route("/create", methods=["GET", "POST"])
 @login_required
 def create():
+    suits = ['Spades', 'Hearts', 'Diamonds', 'Clubs']
+    ranks = ['Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King']
     if request.method == "GET":
         # Render form for creating custom parameters
         return render_template("create.html")
