@@ -84,7 +84,7 @@ def history():
     # Show all of your saved cards.
 
     user_id = session["user_id"]
-    transactions_db = db.execute("SELECT * FROM transactions WHERE user_id = ?", user_id)
+    transactions_db = db.execute("SELECT * FROM custom_parameters WHERE user_id = ?", user_id)
     return render_template("savedcards.html", transactions=transactions_db)
 
 
