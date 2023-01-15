@@ -57,16 +57,16 @@ def create():
         cards = ["{} of {}".format(rank, suit) for rank in ['Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King']]
 
         # check if the form is submitted for the second time
-        if request.form.get("custom_parameters_form"):
+        if request.form.get("cards_form"):
             for card in cards:
                 person = request.form.get(card + "-person")
                 action = request.form.get(card + "-action")
                 object = request.form.get(card + "-object")
 
-                # Insert custom parameters into database
-                db.execute("INSERT INTO custom_parameters (user_id, card, person, action, object) VALUES (?,?,?,?,?)",
-                           session["user_id"], card, person, action, object)
-            flash("Custom parameters for cards created!")
+                # Insert custom card parameters into database
+                db.execute("INSERT INTO cards (user_id, suit, rank, person, action, object) VALUES (?,?,?,?,?,?)",
+                           session["user_id"], suit, rank, person, action, object)
+            flash("PAO values for cards created!")
             return redirect("savedcards.html")
         else:
             return render_template("create.html", cards=cards)
@@ -84,8 +84,8 @@ def history():
     # Show all of your saved cards.
 
     user_id = session["user_id"]
-    parameters_db = db.execute("SELECT * FROM custom_parameters WHERE user_id = ?", user_id)
-    return render_template("savedcards.html", parameters=parameters_db)
+    cards_db = db.execute("SELECT * FROM cards WHERE user_id = ?", user_id)
+    return render_template("savedcards.html", cards=cards_db)
 
 
 @app.route("/login", methods=["GET", "POST"])
