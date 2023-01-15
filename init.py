@@ -8,4 +8,6 @@ def create_standard_cards():
         for rank in ranks:
             db.execute("INSERT INTO cards (suit, rank) VALUES (?, ?)", suit, rank)
 
-create_standard_cards()
+# check if the cards table is empty
+if not db.execute("SELECT * FROM cards"):
+    create_standard_cards()
