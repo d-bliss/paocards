@@ -57,7 +57,7 @@ def create():
         cards = ["{} of {}".format(rank, suit) for rank in ['Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King']]
 
         # check if the form is submitted for the second time
-        if request.form.get("cards_form"):
+        if request.form.get("cards-form"):
             for card in cards:
                 person = request.form.get(card + "-person")
                 action = request.form.get(card + "-action")
