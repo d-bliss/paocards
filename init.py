@@ -1,8 +1,5 @@
 from app import db
 
-# Configure CS50 Library to use SQLite database
-db = SQL("sqlite:///xfinal.db")
-
 def create_standard_cards():
     suits = ['Spades', 'Hearts', 'Diamonds', 'Clubs']
     ranks = ['Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King']
