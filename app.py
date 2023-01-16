@@ -29,6 +29,7 @@ Session(app)
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///xfinal.db")
 
+
 @app.after_request
 def after_request(response):
 
