@@ -9,5 +9,6 @@ def create_standard_cards():
             db.execute("INSERT INTO cards (suit, rank) VALUES (?, ?)", suit, rank)
 
 # check if the cards table is empty
-if not db.execute("SELECT * FROM cards"):
+if not db.execute("SELECT COUNT(*) FROM cards")[0]['COUNT(*)']:
     create_standard_cards()
+
