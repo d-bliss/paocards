@@ -1,5 +1,3 @@
-from app import db
-
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///xfinal.db")
 
@@ -15,3 +13,4 @@ def create_standard_cards():
 if not db.execute("SELECT COUNT(*) FROM cards")[0]['COUNT(*)']:
     create_standard_cards()
 
+from app import db
