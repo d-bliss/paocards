@@ -73,7 +73,7 @@ def create():
 @login_required
 def savedcards():
     user_id = session["user_id"]
-    custom_cards = db.execute("SELECT * FROM custom_cards WHERE user_id = ?", user_id)
+    custom_cards = db.execute("SELECT custom_cards.id, standard_cards.rank, standard_cards.suit, custom_cards.person, custom_cards.action, custom_cards.object FROM custom_cards JOIN standard_cards ON custom_cards.standard_card_id = standard_cards.id WHERE custom_cards.user_id = ?", user_id)
     return render_template("savedcards.html", custom_cards=custom_cards)
 
 
