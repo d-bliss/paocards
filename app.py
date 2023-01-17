@@ -54,25 +54,18 @@ def index():
 @login_required
 def create():
     if request.method == "POST":
-        if request.form.get("cards-form"):
-            standard_cards = db.execute("SELECT * FROM standard_cards")
-            for card in standard_cards:
-                person = request.form.get(card['id'] + "-person")
-                action = request.form.get(card['id'] + "-action")
-                object = request.form.get(card['id'] + "-object")
+        for card_id in request.form:
+            person = request.form.get(card_id + "-person")
+            action = request.form.get(card_id + "-action")
+            object = request.form.get(card_id + "-object")
+            db.execute("INSERT INTO custom_cards (card_id, user_id, person, action, object) VALUES (?,?,?,?,?)",
+                       card_id, session["user_id"], person, action, object)
 
-                # Insert custom card parameters into database
-                db.execute("INSERT INTO custom_cards (user_id, standard_card_id, person, action, object) VALUES (?,?,?,?,?)",
-                           session["user_id"], card['id'], person, action, object)
-            flash("PAO values for cards created!")
-            return redirect("savedcards.html")
-        else:
-            standard_cards = db.execute("SELECT * FROM standard_cards")
-            return render_template("create.html", cards=standard_cards)
+        flash("Custom card parameters saved!")
+        return redirect("/saved_cards")
     else:
-        standard_cards = db.execute("SELECT * FROM standard_cards")
-        return render_template("create.html", cards=standard_cards)
-
+        cards = db.execute("SELECT * FROM cards")
+        return render_template("create.html", cards=cards)
 
 
 
