@@ -50,7 +50,7 @@ def index():
     return render_template("index.html")
 
 
-
+'''
 @app.route("/create", methods=["GET", "POST"])
 @login_required
 def create():
@@ -72,8 +72,18 @@ def create():
     else:
         cards = db.execute("SELECT * FROM standard_cards")
         return render_template("create.html", cards=cards)
+'''
+
+@app.route("/creating", methods=["GET", "POST"])
+@login_required
+def create():
+
+    return redirect("/savedcards")
 
 
+    else:
+        cards = db.execute("SELECT * FROM standard_cards")
+        return render_template("create.html", cards=cards)
 
 
 @app.route("/savedcards")
