@@ -13,7 +13,7 @@ Create
         <label for="{{ card.id }}-person">{{ card.rank }} of {{ card.suit }} -
             Person</label>
         <input type="text" class="form-control" name="{{ card.id }}-person"
-            value="{{ request.form.get('{0}-person') }}">
+            value="{{ request.form.get('{card.id}-person') }}">
     </div>
     <div class="form-group">
         <label for="{{ card.id }}-action">{{ card.rank }} of {{ card.suit }} -
