@@ -9,18 +9,23 @@ Creating
 <form action="/creating" method="post">
     <div class="mb-3">
         <input autocomplete="off" autofocus class="form-control mx-auto w-auto"
-            name="symbol" placeholder="Symbol" type="text" required>
+            name="person" placeholder="Person" type="text" required>
     </div>
     <div class="mb-3">
         <input autocomplete="off" autofocus class="form-control mx-auto w-auto"
-            name="shares" placeholder="Shares" type="number" required>
+            name="action" placeholder="Action" type="text" required>
     </div>
-    <button class="btn btn-primary" type="submit">Buy</button>
+    <div class="mb-3">
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto"
+            name="object" placeholder="Object" type="text" required>
+    </div>
+    <button class="btn btn-primary" type="submit">SAVE</button>
 </form>
 {% endblock %}
 
----------
 
+
+<!--
 {% extends "layout.html" %}
 
 {% block title %}
@@ -60,3 +65,4 @@ Create
     <button class="btn btn-primary" type="submit">Save</button>
 </form>
 {% endblock %}
+-->
