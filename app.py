@@ -62,7 +62,7 @@ def create():
                        card_id, session["user_id"], person, action, object)
 
         flash("Custom card parameters saved!")
-        return redirect("/saved_cards")
+        return redirect("savedcards.html")
     else:
         cards = db.execute("SELECT * FROM cards")
         return render_template("create.html", cards=cards)
