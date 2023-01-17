@@ -59,13 +59,14 @@ def create():
             action = request.form.get(card_id + "-action")
             object = request.form.get(card_id + "-object")
             db.execute("INSERT INTO custom_cards (standard_card_id, user_id, person, action, object) VALUES (?,?,?,?,?)",
-                       card_id, session["user_id"], person or None, action or None, object or None)
+                       card_id, session["user_id"], person, action, object)
 
         flash("Custom card parameters saved!")
         return redirect("/savedcards")
     else:
-        cards = db.execute("SELECT * FROM cards")
+        cards = db.execute("SELECT * FROM standard_cards")
         return render_template("create.html", cards=cards)
+
 
 
 
