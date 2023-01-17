@@ -5,6 +5,7 @@ Create
 {% endblock %}
 
 {% block main %}
+
 <h1 class="text-danger">Create Cards</h1>
 <form action="/create" method="post" style="display:block" id="cards-form">
     {% for card in cards %}
@@ -12,19 +13,19 @@ Create
         <label for="{{ card.id }}-person">{{ card.rank }} of {{ card.suit }} -
             Person</label>
         <input type="text" class="form-control" name="{{ card.id }}-person"
-            value="{{ request.form.get(card.id + " -person") }}">
+            value="{{ request.form.get(card.id + '-person') }}">
     </div>
     <div class="form-group">
         <label for="{{ card.id }}-action">{{ card.rank }} of {{ card.suit }} -
             Action</label>
         <input type="text" class="form-control" name="{{ card.id }}-action"
-            value="{{ request.form.get(card.id + " -action") }}">
+            value="{{ request.form.get(card.id + '-action') }}">
     </div>
     <div class="form-group">
         <label for="{{ card.id }}-object">{{ card.rank }} of {{ card.suit }} -
             Object</label>
         <input type="text" class="form-control" name="{{ card.id }}-object"
-            value="{{ request.form.get(card.id + " -object") }}">
+            value="{{ request.form.get(card.id + '-object') }}">
     </div>
     {% endfor %}
     <button class="btn btn-primary" type="submit">Save</button>
