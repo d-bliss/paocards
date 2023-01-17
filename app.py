@@ -44,7 +44,7 @@ def after_request(response):
 @login_required
 def index():
 
-    # Show portfolio of stocks.
+    # Show main page.
     user_id = session["user_id"]
 
     return render_template("index.html")
