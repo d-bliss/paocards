@@ -62,9 +62,9 @@ def create():
         temp_deck = db.execute("SELECT standard_cards.std_card_id, custom_cards.cust_card_id, custom_cards.user_id, custom_cards.person, custom_cards.action, custom_cards.obj, users.username FROM standard_cards JOIN custom_cards ON standard_cards.std_card_id = custom_cards.std_card_id JOIN users ON custom_cards.user_id = users.user_id")
         for card in temp_deck:
             cust_card_id =  card.std_card_id
-            person = request.form.get(f"{card.user_id}-person") or ""
-            action = request.form.get(f"{card.user_id}-action") or ""
-            obj = request.form.get(f"{card.user_id}-obj") or ""
+            person = request.form.get(f"person_{card.std_card_id}"}-person") or ""
+            action = request.form.get(f"action_{card.std_card_id}") or ""
+            obj = request.form.get(f"obj_{card.std_card_id}") or ""
             db.execute("INSERT INTO custom_cards (user_id, std_card_id, cust_card_id, person, action, obj) VALUES (?,?,?,?,?,?)", (card.user_id, card.std_card_id, cust_card_id, person, action, obj))
         return redirect("/savedcards")
 
