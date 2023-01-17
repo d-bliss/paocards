@@ -58,7 +58,7 @@ def create():
         '''temp_deck = db.execute("SELECT * FROM standard_cards WHERE user_id = ?", session["user_id"])'''
         temp_deck = = list(range(52))
         for card in temp_deck:
-            '''std_card_id = standard_cards.std_card_id'''
+            std_card_id = 1
             person = request.form.get(f"{card.id}-person") or ""
             action = request.form.get(f"{card.id}-action") or ""
             obj = request.form.get(f"{card.id}-obj") or ""
