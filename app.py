@@ -50,7 +50,7 @@ def index():
     return render_template("index.html")
 
 
-'''
+
 @app.route("/create", methods=["GET", "POST"])
 @login_required
 def create():
@@ -59,7 +59,7 @@ def create():
         user_id = session["user_id"]
         std_card_id = 1
         #creat and store a list of dictionaries from the standard_cards table for 1-52
-        temp_deck = db.execute("SELECT standard_cards.std_card_id, custom_cards.cust_card_id, custom_cards.user_id, custom_cards.person, custom_cards.action, custom_cards.obj, users.username FROM standard_cards JOIN custom_cards ON standard_cards.std_card_id = custom_cards.std_card_id JOIN users ON custom_cards.user_id = users.user_id")
+        temp_deck = db.execute("SELECT standard_cards.std_card_id, custom_cards.cust_card_id, custom_cards.user_id, custom_cards.person, custom_cards.action, custom_cards.obj FROM standard_cards JOIN custom_cards ON standard_cards.std_card_id = custom_cards.std_card_id AND custom_cards.user_id = :user_id", user_id=user_id)
         for card in temp_deck:
             cust_card_id =  card.std_card_id
             person = request.form.get(f"person_{card.std_card_id}") or ""
@@ -72,8 +72,8 @@ def create():
     else:
         cards = db.execute("SELECT * FROM standard_cards")
         return render_template("create.html", cards=cards)
-'''
 
+'''
 @app.route("/creating", methods=["GET", "POST"])
 @login_required
 def create():
@@ -91,7 +91,7 @@ def create():
     else:
         cards = db.execute("SELECT * FROM standard_cards")
         return render_template("create.html", cards=cards)
-
+'''
 
 @app.route("/savedcards")
 @login_required
