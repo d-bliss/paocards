@@ -1,29 +1,8 @@
-{% extends "layout.html" %}
-
-{% block title %}
-Saved Cards
-{% endblock %}
-
-{% block main %}
-<h1 class="text-success">Your Saved Cards</h1>
-<table class="table table-active">
-    <thead>
-        <tr>
-            <th scope="col">Card</th>
-            <th scope="col">Person</th>
-            <th scope="col">Action</th>
-            <th scope="col">Object</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for row in custom_parameters %}
-        <tr>
-            <td>{{ row["rank"] }} of {{ row["suit"] }}</td>
-            <td>{{ row["person"] }}</td>
-            <td>${{ row["action"] }}</td>
-            <td>{{ row["object"] }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-{% endblock %}
+{% for row in custom_cards %}
+<tr>
+    <td>{{ row["rank"] }} of {{ row["suit"] }}</td>
+    <td>{{ row["person"] }}</td>
+    <td>${{ row["action"] }}</td>
+    <td>{{ row["object"] }}</td>
+</tr>
+{% endfor %}

@@ -72,13 +72,9 @@ def create():
 @app.route("/savedcards")
 @login_required
 def savedcards():
-
-    # Show all of your saved cards.
-
     user_id = session["user_id"]
-    custom_cards_db = db.execute("SELECT * FROM custom_cards WHERE user_id = ?", user_id)
-    return render_template("savedcards.html", custom_cards=custom_cards_db)
-
+    custom_cards = db.execute("SELECT * FROM custom_cards WHERE user_id = ?", user_id)
+    return render_template("savedcards.html", custom_cards=custom_cards)
 
 
 
