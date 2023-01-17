@@ -1,8 +1,8 @@
-{% for row in custom_cards %}
+{% for card in custom_cards %}
 <tr>
-    <td>{{ row["rank"] }} of {{ row["suit"] }}</td>
-    <td>{{ row["person"] }}</td>
-    <td>${{ row["action"] }}</td>
-    <td>{{ row["object"] }}</td>
+    <td>{{ card.rank }} of {{ card.suit }}</td>
+    <td>{{ card.person }}</td>
+    <td>{{ card.action }}</td>
+    <td>{{ card.object }}</td>
 </tr>
 {% endfor %}
