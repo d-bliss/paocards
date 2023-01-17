@@ -64,7 +64,7 @@ def create():
         flash("Custom card parameters saved!")
         return redirect("savedcards.html")
     else:
-        cards = db.execute("SELECT * FROM custom_cards")
+        cards = db.execute("SELECT * FROM standard_cards")
         return render_template("create.html", cards=cards)
 
 
