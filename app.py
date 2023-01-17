@@ -54,26 +54,24 @@ def index():
 @login_required
 def create():
     if request.method == "POST":
-        suit = request.form.get("suit")
-        cards = ["{} of {}".format(rank, suit) for rank in ['Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King']]
-
-        # check if the form is submitted for the second time
         if request.form.get("cards-form"):
-            for card in cards:
-                person = request.form.get(card + "-person")
-                action = request.form.get(card + "-action")
-                object = request.form.get(card + "-object")
+            standard_cards = db.execute("SELECT * FROM standard_cards")
+            for card in standard_cards:
+                person = request.form.get(card['id'] + "-person")
+                action = request.form.get(card['id'] + "-action")
+                object = request.form.get(card['id'] + "-object")
 
                 # Insert custom card parameters into database
-                db.execute("INSERT INTO cards (user_id, suit, rank, person, action, object) VALUES (?,?,?,?,?,?)",
-                           session["user_id"], suit, rank, person, action, object)
+                db.execute("INSERT INTO custom_cards (user_id, standard_card_id, person, action, object) VALUES (?,?,?,?,?)",
+                           session["user_id"], card['id'], person, action, object)
             flash("PAO values for cards created!")
             return redirect("savedcards.html")
         else:
-            return render_template("create.html", cards=cards)
+            standard_cards = db.execute("SELECT * FROM standard_cards")
+            return render_template("create.html", cards=standard_cards)
     else:
-        return render_template("create.html")
-
+        standard_cards = db.execute("SELECT * FROM standard_cards")
+        return render_template("create.html", cards=standard_cards)
 
 
 
