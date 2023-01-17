@@ -61,7 +61,6 @@ def create():
             user_id = session["user_id"]
             std_card_id = 1
             cust_card_id =  std_card_id
-            person = request.form.get(f"{card.id}-person") or ""
             action = request.form.get(f"{card.id}-action") or ""
             obj = request.form.get(f"{card.id}-obj") or ""
             db.execute("INSERT INTO custom_cards (user_id, std_card_id, cust_card_id, person, action, obj) VALUES (?,?,?,?,?,?)", (user_id, std_card_id, cust_card_id, person, action, obj))
