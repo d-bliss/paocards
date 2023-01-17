@@ -55,7 +55,7 @@ def index():
 @login_required
 def create():
     if request.method == "POST":
-        for card in cards:
+        for card in custom_cards:
             standard_card_id = card["id"]
             person = request.form.get(card["id"] + "-person") or ""
             action = request.form.get(card["id"] + "-action") or ""
