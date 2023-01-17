@@ -6,7 +6,20 @@ Create
 
 {% block main %}
 <h1 class="text-danger">Create Cards</h1>
-<form action="/create" method="post" style="display:block" id="cards-form">
+<form action="/create" method="post">
+    <div class="form-group">
+        <label for="suit">Select Suit</label>
+        <select class="form-control" name="suit" required>
+            <option value="Spades">Spades</option>
+            <option value="Hearts">Hearts</option>
+            <option value="Diamonds">Diamonds</option>
+            <option value="Clubs">Clubs</option>
+        </select>
+    </div>
+    <button class="btn btn-primary" type="submit">Next</button>
+</form>
+<form action="/save_custom_cards" method="post" style="display:block"
+    id="cards-form">
     {% for card in cards %}
     <div class="form-group">
         <label for="{{ card.id }}-person">{{ card.rank }} of {{ card.suit }} -
@@ -27,6 +40,7 @@ Create
     <button class="btn btn-primary" type="submit">Save</button>
 </form>
 {% endblock %}
+
 
 
 
