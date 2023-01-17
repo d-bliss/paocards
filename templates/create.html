@@ -24,7 +24,7 @@ Create
         <label for="{{ card.id }}-object">{{ card.rank }} of {{ card.suit }} -
             Object</label>
         <input type="text" class="form-control" name="{{ card.id }}-object"
-            value="{{ request.form.get(card.id ~ '-object','') }}">
+            value="{{ request.form.get(card.id ~ '-obj','') }}">
     </div>
     {% endfor %}
     <button class="btn btn-primary" type="submit">Save</button>

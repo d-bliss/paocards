@@ -60,9 +60,9 @@ def create():
             standard_card_id = card.id
             person = request.form.get(f"{card.id}-person") or ""
             action = request.form.get(f"{card.id}-action") or ""
-            object = request.form.get(f"{card.id}-object") or ""
+            obj = request.form.get(f"{card.id}-obj") or ""
             user_id = session["user_id"]
-            db.execute("INSERT INTO custom_cards (standard_card_id, person, action, object) VALUES (?,?,?,?,?)", (standard_card_id, user_id, person, action, object))
+            db.execute("INSERT INTO custom_cards (standard_card_id, person, action, obj) VALUES (?,?,?,?,?)", (standard_card_id, user_id, person, action, obj))
         return redirect("/savedcards")
 
     else:
@@ -81,7 +81,7 @@ def create():
 @login_required
 def savedcards():
     user_id = session["user_id"]
-    custom_cards = db.execute("SELECT custom_cards.id, standard_cards.rank, standard_cards.suit, custom_cards.person, custom_cards.action, custom_cards.object FROM custom_cards JOIN standard_cards ON custom_cards.standard_card_id = standard_cards.id WHERE custom_cards.user_id = ?", user_id)
+    custom_cards = db.execute("SELECT custom_cards.id, standard_cards.rank, standard_cards.suit, custom_cards.person, custom_cards.action, custom_cards.obj FROM custom_cards JOIN standard_cards ON custom_cards.standard_card_id = standard_cards.id WHERE custom_cards.user_id = ?", user_id)
     return render_template("savedcards.html", custom_cards=custom_cards)
 
 
