@@ -55,8 +55,8 @@ def index():
 @login_required
 def create():
     if request.method == "POST":
-        cards = db.execute("SELECT * FROM standard_cards WHERE id = ?", session["user_id"])
-        for card in cards:
+        custom_cards = db.execute("SELECT * FROM standard_cards WHERE id = ?", session["id"])
+        for card in custom_cards:
             standard_card_id = card.id
             person = request.form.get(f"{card.id}-person") or ""
             action = request.form.get(f"{card.id}-action") or ""
