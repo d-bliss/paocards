@@ -54,8 +54,9 @@ def index():
 @app.route("/create", methods=["GET", "POST"])
 @login_required
 def create():
+    standard_cards = db.execute("SELECT * FROM standard_cards")
     if request.method == "POST":
-        for card in custom_cards:
+        for card in standard_cards:
             standard_card_id = card["id"]
             person = request.form.get(card["id"] + "-person") or ""
             action = request.form.get(card["id"] + "-action") or ""
