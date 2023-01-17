@@ -1,8 +1,29 @@
-{% for card in custom_cards %}
-<tr>
-    <td>{{ card.rank }} of {{ card.suit }}</td>
-    <td>{{ card.person }}</td>
-    <td>{{ card.action }}</td>
-    <td>{{ card.object }}</td>
-</tr>
-{% endfor %}
+{% extends "layout.html" %}
+
+{% block title %}
+Saved Cards
+{% endblock %}
+
+{% block main %}
+<h1 class="text-success">Your Saved Cards</h1>
+<table class="table table-active">
+    <thead>
+        <tr>
+            <th scope="col">Card</th>
+            <th scope="col">Person</th>
+            <th scope="col">Action</th>
+            <th scope="col">Object</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for card in custom_cards %}
+        <tr>
+            <td>{{ card.rank }} of {{ card.suit }}</td>
+            <td>{{ card.person }}</td>
+            <td>{{ card.action }}</td>
+            <td>{{ card.object }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
