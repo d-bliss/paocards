@@ -54,6 +54,7 @@ def index():
 @app.route("/create", methods=["GET", "POST"])
 @login_required
 def create():
+    print(request.form)
     if request.method == "POST":
         user_id = session["user_id"]
         std_card_id = 1
