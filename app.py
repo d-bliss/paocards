@@ -58,12 +58,14 @@ def create():
         '''temp_deck = db.execute("SELECT * FROM standard_cards WHERE user_id = ?", session["user_id"])'''
         temp_deck = = list(range(52))
         for card in temp_deck:
+            user_id = session["user_id"]
             std_card_id = 1
+            cust_card_id =  std_card_id
             person = request.form.get(f"{card.id}-person") or ""
             action = request.form.get(f"{card.id}-action") or ""
             obj = request.form.get(f"{card.id}-obj") or ""
-            user_id = session["user_id"]
-            db.execute("INSERT INTO custom_cards (cust_card_id, user_id, std_card_id, person, action, obj) VALUES (?,?,?,?,?)", (user_id, std_card_id, person, action, obj))
+            db.execute("INSERT INTO custom_cards (user_id, std_card_id, cust_card_id, person, action, obj) VALUES (?,?,?,?,?,?)", (user_id, std_card_id, cust_card_id, person, action, obj))
+            std_card_id +
         return redirect("/savedcards")
 
     else:
