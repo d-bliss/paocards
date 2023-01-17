@@ -59,6 +59,8 @@ def create():
             action = request.form.get(card_id + "-action")
             object = request.form.get(card_id + "-object")
             db.execute("INSERT INTO custom_cards (standard_card_id, user_id, person, action, object) VALUES (?,?,?,?,?)",
+    card_id, user_id, request.form.get(card_id + "-person") or '', request.form.get(card_id + "-action") or '', request.form.get(card_id + "-object") or ''
+,
                        card_id, session["user_id"], person, action, object)
 
         flash("Custom card parameters saved!")
