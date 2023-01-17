@@ -62,7 +62,7 @@ def create():
                        card_id, session["user_id"], person, action, object)
 
         flash("Custom card parameters saved!")
-        return redirect("savedcards.html")
+        return redirect("/savedcards")
     else:
         cards = db.execute("SELECT * FROM standard_cards")
         return render_template("create.html", cards=cards)
@@ -72,9 +72,13 @@ def create():
 @app.route("/savedcards")
 @login_required
 def savedcards():
+
+    # Show all of your saved cards.
+
     user_id = session["user_id"]
-    custom_parameters = db.execute("SELECT cards.suit, cards.rank, custom_cards.person, custom_cards.action, custom_cards.object FROM cards JOIN custom_cards ON cards.id = custom_cards.card_id WHERE custom_cards.user_id = ?", user_id)
-    return render_template("savedcards.html", custom_parameters=custom_parameters)
+    custom_cards_db = db.execute("SELECT * FROM custom_cards WHERE user_id = ?", user_id)
+    return render_template("savedcards.html", custom_cards=custom_cards_db)
+
 
 
 
