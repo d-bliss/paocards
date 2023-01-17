@@ -56,6 +56,7 @@ def index():
 def create():
     if request.method == "POST":
         custom_cards = db.execute("SELECT * FROM custom_cards WHERE user_id = ?", session["user_id"])
+        #custom_cards = db.execute("SELECT * FROM custom_cards WHERE user_id = ?", session["user_id"])
         for card in custom_cards:
             standard_card_id = card.id
             person = request.form.get(f"{card.id}-person") or ""
