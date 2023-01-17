@@ -58,7 +58,7 @@ def create():
         user_id = session["user_id"]
         std_card_id = 1
         #creat and store a list of dictionaries from the standard_cards table for 1-52
-        temp_deck = db.execute("SELECT std_card_id FROM standard_cards")
+        temp_deck = db.execute("SELECT standard_cards.std_card_id, custom_cards.cust_card_id, custom_cards.user_id, custom_cards.person, custom_cards.action, custom_cards.obj, users.username FROM standard_cards JOIN custom_cards ON standard_cards.std_card_id = custom_cards.std_card_id JOIN users ON custom_cards.user_id = users.user_id")
         for card in temp_deck:
             cust_card_id =  std_card_id
             person = request.form.get(f"{card.user_id}-person") or ""
