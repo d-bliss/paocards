@@ -130,6 +130,7 @@ def logout():
     return redirect("/")
 
 
+"""
 @app.route("/play", methods=["GET", "POST"])
 @login_required
 def play():
@@ -152,6 +153,7 @@ def play():
         #request.method == "GET":
         # Render form for stock quote
         return render_template("index.html")
+"""
 
 
 
