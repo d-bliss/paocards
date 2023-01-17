@@ -8,7 +8,7 @@ Create
 <h1 class="text-danger">Create Cards</h1>
 <form action="/create" method="post" style="display:block" id="cards-form">
     {% for card in cards %}
-    <div class="form-group mb-3">
+    <div class="form-group  justify-content-center">
         <label for="{{ card.id }}-person">{{ card.rank }} of {{ card.suit }} -
             Person</label>
         <input type="text" class="form-control" name="{{ card.id }}-person"
