@@ -55,14 +55,15 @@ def index():
 @login_required
 def create():
     if request.method == "POST":
-        custom_cards = db.execute("SELECT * FROM custom_cards WHERE user_id = ?", session["user_id"])
-        for card in custom_cards:
-            standard_card_id = card.id
+        '''temp_deck = db.execute("SELECT * FROM standard_cards WHERE user_id = ?", session["user_id"])'''
+        temp_deck = 
+        for each_card in temp_deck:
+            std_card_id = standard_cards.std_card_id
             person = request.form.get(f"{card.id}-person") or ""
             action = request.form.get(f"{card.id}-action") or ""
             obj = request.form.get(f"{card.id}-obj") or ""
             user_id = session["user_id"]
-            db.execute("INSERT INTO custom_cards (standard_card_id, user_id, person, action, obj) VALUES (?,?,?,?,?)", (standard_card_id, user_id, person, action, obj))
+            db.execute("INSERT INTO custom_cards (user_id, std_card_id, person, action, obj) VALUES (?,?,?,?,?)", (user_id, std_card_id, person, action, obj))
         return redirect("/savedcards")
 
     else:
@@ -81,7 +82,7 @@ def create():
 @login_required
 def savedcards():
     user_id = session["user_id"]
-    custom_cards = db.execute("SELECT custom_cards.id, standard_cards.rank, standard_cards.suit, custom_cards.person, custom_cards.action, custom_cards.obj FROM custom_cards JOIN standard_cards ON custom_cards.standard_card_id = standard_cards.id WHERE custom_cards.user_id = ?", user_id)
+    custom_cards = db.execute("SELECT custom_cards.cust_card_id, standard_cards.rank, standard_cards.suit, custom_cards.person, custom_cards.action, custom_cards.obj FROM custom_cards JOIN standard_cards ON custom_cards.std_card_id = standard_cards.std_card_id WHERE custom_cards.user_id = ?", user_id)
     return render_template("savedcards.html", custom_cards=custom_cards)
 
 
@@ -109,11 +110,11 @@ def login():
                           username=request.form.get("username"))
 
         # Ensure username exists and password is correct
-        if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
+        if len(rows) != 1 or not check_password_hash(rows[0]["password_hash"], request.form.get("password")):
             return apology("invalid username and/or password", 403)
 
         # Remember which user has logged in
-        session["user_id"] = rows[0]["id"]
+        session["user_id"] = rows[0]["user_id"]
 
         # Redirect user to home page
         return redirect("/")
@@ -197,7 +198,7 @@ def register():
         hash = generate_password_hash(password)
 
         # Insert new user into database
-        result = db.execute("INSERT INTO users (username, hash) VALUES (:username, :hash)",
+        result = db.execute("INSERT INTO users (username, password_hash) VALUES (:username, :hash)",
                             username=request.form.get("username"), hash=hash)
 
         # Query database for newly registered user
@@ -205,7 +206,7 @@ def register():
                         username=request.form.get("username"))
 
         # Remember which user has logged in
-        session["user_id"] = rows[0]["id"]
+        session["user_id"] = rows[0]["user_id"]
 
         # Redirect user to home page
         return redirect("/")
