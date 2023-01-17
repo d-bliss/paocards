@@ -55,6 +55,7 @@ def index():
 @login_required
 def create():
     if request.method == "POST":
+        #creat and store a list of dictionaries from the standard_cards table for 1-52
         temp_deck = db.execute(SELECT std_card_id FROM standard_cards)
         for card in temp_deck:
             user_id = session["user_id"]
