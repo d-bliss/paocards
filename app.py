@@ -77,6 +77,13 @@ def create():
 @app.route("/creating", methods=["GET", "POST"])
 @login_required
 def create():
+      user_id = session["user_id"]
+
+      # Insert form data into database
+        db.execute(
+            "INSERT INTO custom_cards (user_id, symbol, shares, price, date) VALUES (?, ?, ?, ?, ?)",
+            user_id, stock["symbol"], shares, stock["price"], date
+        )
 
     return redirect("/savedcards")
 
