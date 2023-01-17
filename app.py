@@ -53,20 +53,20 @@ def index():
 @app.route("/create", methods=["GET", "POST"])
 @login_required
 def create():
-    if request.method == "GET":
+    if request.method == "POST":
+        for card in cards:
+            standard_card_id = card["id"]
+            person = request.form.get(card["id"] + "-person") or ""
+            action = request.form.get(card["id"] + "-action") or ""
+            object = request.form.get(card["id"] + "-object") or ""
+            user_id = session["user_id"]
+            db.execute("INSERT INTO custom_cards (standard_card_id, user_id, person, action, object) VALUES (?,?,?,?,?)", standard_card_id, user_id, person, action, object)
+        return redirect("/savedcards")
+
+    else:
         cards = db.execute("SELECT * FROM standard_cards")
         return render_template("create.html", cards=cards)
-    else:
-        for card in cards:
-            standard_card_id = card.id
-            user_id = session["user_id"]
-            person = request.form.get(f"{card.id}-person") or ''
-            action = request.form.get(f"{card.id}-action") or ''
-            object = request.form.get(f"{card.id}-object") or ''
-            db.execute("INSERT INTO custom_cards (standard_card_id, user_id, person, action, object) VALUES (?,?,?,?,?)",
-                       standard_card_id, user_id, person, action, object)
-        flash("Cards created!")
-        return redirect("/savedcards")
+
 
 
 
