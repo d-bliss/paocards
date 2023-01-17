@@ -81,7 +81,7 @@ def create():
 
       # Insert form data into database
         db.execute(
-            "INSERT INTO custom_cards (user_id, symbol, shares, price, date) VALUES (?, ?, ?, ?, ?)",
+            "INSERT INTO custom_cards (user_id, , shares, price, date) VALUES (?, ?, ?, ?, ?)",
             user_id, stock["symbol"], shares, stock["price"], date
         )
 
