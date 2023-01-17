@@ -75,11 +75,6 @@ def create():
 
 
 
-
-
-
-
-
 @app.route("/savedcards")
 @login_required
 def savedcards():
