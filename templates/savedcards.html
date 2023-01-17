@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block title %}
-History
+Saved Cards
 {% endblock %}
 
 {% block main %}
@@ -16,9 +16,9 @@ History
         </tr>
     </thead>
     <tbody>
-        {% for row in custom_perameters %}
+        {% for row in custom_parameters %}
         <tr>
-            <td>{{ row["cards"] }}</td>
+            <td>{{ row["rank"] }} of {{ row["suit"] }}</td>
             <td>{{ row["person"] }}</td>
             <td>${{ row["action"] }}</td>
             <td>{{ row["object"] }}</td>
@@ -26,5 +26,4 @@ History
         {% endfor %}
     </tbody>
 </table>
-
 {% endblock %}

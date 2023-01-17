@@ -50,22 +50,13 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/create", methods=["GET", "POST"])
+@app.route("/savedcards")
 @login_required
-def create():
-    if request.method == "POST":
-        for card_id in request.form:
-            person = request.form.get(card_id + "-person")
-            action = request.form.get(card_id + "-action")
-            object = request.form.get(card_id + "-object")
-            db.execute("INSERT INTO custom_cards (card_id, user_id, person, action, object) VALUES (?,?,?,?,?)",
-                       card_id, session["user_id"], person, action, object)
+def savedcards():
+    user_id = session["user_id"]
+    custom_parameters = db.execute("SELECT cards.suit, cards.rank, custom_cards.person, custom_cards.action, custom_cards.object FROM cards JOIN custom_cards ON cards.id = custom_cards.card_id WHERE custom_cards.user_id = ?", user_id)
+    return render_template("savedcards.html", custom_parameters=custom_parameters)
 
-        flash("Custom card parameters saved!")
-        return redirect("/saved_cards")
-    else:
-        cards = db.execute("SELECT * FROM cards")
-        return render_template("create.html", cards=cards)
 
 
 
