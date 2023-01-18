@@ -19,6 +19,7 @@ nav .navbar-brand .blue {
     text-align: center;
 }
 
+/* This class is used to set the width of an element to 50% of the total page width */
 .form-half {
     width: 50%;
     margin: 0 auto;
