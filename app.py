@@ -84,8 +84,7 @@ def create():
     else:
         user_id = session["user_id"]
         cards = db.execute("SELECT * FROM standard_cards")
-        persons = db.execute("SELECT person FROM custom_cards WHERE user_id = ?", user_id)
-        return render_template("create.html", cards=cards, persons=persons)
+        return render_template("create.html", cards=cards)
 
 
 
