@@ -70,11 +70,8 @@ def create():
         obj = request.form.get(f"obj_1") or ""
         db.execute("INSERT INTO custom_cards (user_id, std_card_id, person, action, obj) VALUES (?,?,?,?,?)", (user_id, 1, person, action, obj));
 
-           '''person = request.form.get(f"person_{card.std_card_id}") or ""
-            action = request.form.get(f"action_{card.std_card_id}") or ""
-            obj = request.form.get(f"obj_{card.std_card_id}") or ""
-            db.execute("INSERT INTO custom_cards (user_id, std_card_id, person, action, obj) VALUES (?,?,?,?,?)", (user_id, card.std_card_id, person, action, obj));'''
-            
+           
+
         return redirect("/savedcards")
 
 
