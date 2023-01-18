@@ -5,7 +5,7 @@ Create
 {% endblock %}
 
 {% block main %}
-<div>
+<div class="col-4">
 <h1 class="text-danger">Create Cards</h1>
 <form action="/create" method="post" style="display:block" id="cards-form">
     {% for card in cards %}
@@ -34,7 +34,7 @@ Create
 {% endblock %}
 
 {% block sidebar %}
-</div>
+<div class="col-8">
 <h1 class="text-success">Your Saved Cards</h1>
 <table class="table table-active">
     <thead>
