@@ -50,7 +50,7 @@ def index():
     return render_template("index.html")
 
 
-'''
+
 @app.route("/create", methods=["GET", "POST"])
 @login_required
 def create():
@@ -58,21 +58,22 @@ def create():
     if request.method == "POST":
         user_id = session["user_id"]
         std_card_id = 1
+        db.execute("INSERT INTO custom_cards WH
         #creat and store a list your custom cards
-        temp_deck = db.execute("SELECT standard_cards.std_card_id, custom_cards.cust_card_id, custom_cards.user_id, custom_cards.person, custom_cards.action, custom_cards.obj FROM standard_cards JOIN custom_cards ON standard_cards.std_card_id = custom_cards.std_card_id AND custom_cards.user_id = :user_id", user_id=user_id)
+        """temp_deck = db.execute("SELECT standard_cards.std_card_id, custom_cards.cust_card_id, custom_cards.user_id, custom_cards.person, custom_cards.action, custom_cards.obj FROM standard_cards JOIN custom_cards ON standard_cards.std_card_id = custom_cards.std_card_id AND custom_cards.user_id = :user_id", user_id=user_id)
         for card in temp_deck:
             cust_card_id =  card.std_card_id
             person = request.form.get(f"person_{card.std_card_id}") or ""
             action = request.form.get(f"action_{card.std_card_id}") or ""
             obj = request.form.get(f"obj_{card.std_card_id}") or ""
-            db.execute("INSERT INTO custom_cards (cust_card_id, user_id, std_card_id, person, action, obj) VALUES (?,?,?,?,?,?)", (cust_card_id, user_id, card.std_card_id, person, action, obj))
+            db.execute("INSERT INTO custom_cards (cust_card_id, user_id, std_card_id, person, action, obj) VALUES (?,?,?,?,?,?)", (cust_card_id, user_id, card.std_card_id, person, action, obj))"""
         return redirect("/savedcards")
 
 
     else:
         cards = db.execute("SELECT * FROM standard_cards")
         return render_template("create.html", cards=cards)
-'''
+
 
 '''
 @app.route("/creating", methods=["GET", "POST"])
