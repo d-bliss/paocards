@@ -8,7 +8,7 @@ Create
 <h1 class="text-danger">Create Cards</h1>
 <form action="/create" method="post" style="display:block" id="cards-form">
     {% for person in persons %}
-        <input {{ person. }} of {{ person.person }} type="text" class="form-control">
+        <input value="{{ person.person }}" type="text" class="form-control">
     {% endfor %}
     {% for card in cards %}
     <div class="form-group">
