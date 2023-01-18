@@ -88,7 +88,7 @@ def create():
         return render_template("create.html", cards=cards, persons=persons)
 
 
-@app.route("/savedcards")
+@app.route("/create")
 @login_required
 def savedcards():
     user_id = session["user_id"]
