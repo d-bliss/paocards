@@ -68,7 +68,7 @@ def create():
         person = request.form.get(f"person_1") or ""
         action = request.form.get(f"action_1") or ""
         obj = request.form.get(f"obj_1") or ""
-        db.execute("INSERT INTO custom_cards (user_id, std_card_id, person, action, obj) VALUES (?,?,?,?,?)", (user_id, user_id, person, action, obj));
+        db.execute("INSERT INTO custom_cards (user_id, std_card_id, person, action, obj) VALUES (?,?,?)", (user_id, person, action, obj));
 
 
         return redirect("/savedcards")
