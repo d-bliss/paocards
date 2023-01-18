@@ -71,9 +71,7 @@ def create():
         db.execute("INSERT INTO custom_cards (user_id, std_card_id, person, action, obj) VALUES (?,?,?,?,?)", (user_id, 1, person, action, obj));
 
 
-
         return redirect("/savedcards")
-
 
     else:
         cards = db.execute("SELECT * FROM standard_cards")
