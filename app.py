@@ -66,7 +66,7 @@ def create():
         for card in cards:'''
         temp_deck = list(range(52))
         for i in temp_deck:
-            person = request.form.get(f"person_" + str(i)) or ""
+            person = request.form.get(f"person_{i}") or ""
             action = request.form.get(f"action_1") or ""
             obj = request.form.get(f"obj_1") or ""
             db.execute("INSERT INTO custom_cards (user_id, std_card_id, person, action, obj) VALUES (?,?,?,?,?)", user_id, i, person, action, obj);
