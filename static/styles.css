@@ -19,6 +19,14 @@ nav .navbar-brand .blue {
     text-align: center;
 }
 
+/* Increase the size, round the corners, and add some margin to the save button on input page */
+.btn-primary {
+    font-size: 1.8rem;
+    padding: 0.4rem 2rem;
+    margin: 1rem;
+    border-radius: 0.75rem;
+}
+
 /* This class is used to set the width of an element to 50% of the total page width */
 .form-half {
     width: 50%;
