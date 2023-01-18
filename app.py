@@ -87,13 +87,9 @@ def create():
         persons = db.execute("SELECT person FROM custom_cards WHERE user_id = ?", user_id)
         return render_template("create.html", cards=cards, persons=persons)
 
-def savedcards():
-    user_id = session["user_id"]
-    custom_cards = db.execute("SELECT custom_cards.cust_card_id, standard_cards.rank, standard_cards.suit, custom_cards.person, custom_cards.action, custom_cards.obj FROM custom_cards JOIN standard_cards ON custom_cards.std_card_id = standard_cards.std_card_id WHERE custom_cards.user_id = ?", user_id)
-    return render_template("savedcards.html", custom_cards=custom_cards)
 
 
-@app.route("/create")
+@app.route("/savedcards")
 @login_required
 def savedcards():
     user_id = session["user_id"]
