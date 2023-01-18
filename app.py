@@ -76,6 +76,7 @@ def create():
                 db.execute("INSERT INTO custom_cards (user_id, std_card_id, person, action, obj) VALUES (?,?,?,?,?)", user_id, i, person, action, obj);
         return redirect("/savedcards")
     else:
+        user_id = session["user_id"]
         cards = db.execute("SELECT * FROM standard_cards")
         paos = db.execute("SELECT * FROM custom_cards WHERE user_id = ?", user_id)
         #insert jinja code for the placeholder (link to i)
