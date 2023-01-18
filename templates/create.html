@@ -19,7 +19,6 @@ Create
             Action</label>
         <input placeholder="Action" type="text" class="form-control" name="action_{{ card.std_card_id }}"
             value="{{ request.form.get('action_' ~ card.std_card_id ,'') }}">
-
     </div>
     <div class="form-group">
         <label for="{{ card.user_id }}-object">{{ card.rank }} of {{ card.suit }} -
