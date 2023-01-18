@@ -27,6 +27,11 @@ nav .navbar-brand .blue {
     border-radius: 0.75rem;
 }
 
+/* Makes the button slightly bigger when hovered over, creating a "pop up" effect */
+.btn-primary:hover {
+    transform: scale(1.1);
+}
+
 /* This class is used to set the width of an element to 50% of the total page width */
 .form-half {
     width: 50%;
