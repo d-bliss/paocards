@@ -61,7 +61,7 @@ def create():
 
         #check if user has already user_id in custom_cards table
         result = db.execute("SELECT * FROM custom_cards WHERE user_id = (?)", user_id)
-        if result != NULL:
+        if result != None:
             for i in deck:
                 person = request.form.get(f"person_{i}") or ""
                 action = request.form.get(f"action_{i}") or ""
