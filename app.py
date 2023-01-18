@@ -58,7 +58,7 @@ def create():
     if request.method == "POST":
         user_id = session["user_id"]
         std_card_id = 1
-        #creat and store a list of dictionaries from the standard_cards table for 1-52
+        #creat and store a list your custom cards
         temp_deck = db.execute("SELECT standard_cards.std_card_id, custom_cards.cust_card_id, custom_cards.user_id, custom_cards.person, custom_cards.action, custom_cards.obj FROM standard_cards JOIN custom_cards ON standard_cards.std_card_id = custom_cards.std_card_id AND custom_cards.user_id = :user_id", user_id=user_id)
         for card in temp_deck:
             cust_card_id =  card.std_card_id
@@ -66,7 +66,6 @@ def create():
             action = request.form.get(f"action_{card.std_card_id}") or ""
             obj = request.form.get(f"obj_{card.std_card_id}") or ""
             db.execute("INSERT INTO custom_cards (cust_card_id, user_id, std_card_id, person, action, obj) VALUES (?,?,?,?,?,?)", (cust_card_id, user_id, card.std_card_id, person, action, obj))
-            db.commit()
         return redirect("/savedcards")
 
 
