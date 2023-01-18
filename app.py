@@ -77,11 +77,11 @@ def create():
         return redirect("/savedcards")
     else:
         cards = db.execute("SELECT * FROM standard_cards")
-        persons = db.execute("SELECT person FROM custom_cards WHERE user_id = ?", user_id)
+        paos = db.execute("SELECT * FROM custom_cards WHERE user_id = ?", user_id)
         #insert jinja code for the placeholder (link to i)
         #text_from_database = db.execute("SELECT person FROM custom_cards #WHERE user_id = ?", (user_id,))[0]['text']
 
-        return render_template("create.html", cards=cards, persons=persons)
+        return render_template("create.html", cards=cards, paos=paos)
 
 
 @app.route("/savedcards")
