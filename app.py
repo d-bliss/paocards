@@ -83,7 +83,8 @@ def create():
         return redirect("/savedcards")
     else:
         user_id = session["user_id"]
-        cards = db.execute("SELECT * FROM standard_cards")
+        #cards = db.execute("SELECT * FROM standard_cards")
+        cards = db.execute("SELECT standard_cards.*, custom_cards.person, custom_cards.action, custom_cards.obj FROM standard_cards LEFT JOIN custom_cards ON standard_cards.std_card_id=custom_cards.std_card_id and custom_cards.user_id=?", user_id)
         return render_template("create.html", cards=cards)
 
 
