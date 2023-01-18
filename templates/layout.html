@@ -83,6 +83,9 @@
         // Update the year in the copyright notice
         document.getElementById("year").innerHTML = currentYear;
     </script>
+    <script>
+        const cards = JSON.parse(document.querySelector("#cards-data").dataset.cards);
+    </script>
     <script src="{{ url_for('static', filename='app.js') }}"></script>
 </body>
 
