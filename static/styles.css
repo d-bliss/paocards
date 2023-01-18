@@ -37,15 +37,6 @@ nav .navbar-brand .green {
     color: #2e944b;
 }
 
-.quoted {
-    color: red;
-    background-image: -webkit-linear-gradient(0deg, red 25%, yellow 50%, green 75%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    text-fill-color: transparent;
-    -webkit-text-fill-color: transparent;
-}
-
 .text-center {
     text-align: center !important;
 }
