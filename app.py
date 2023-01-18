@@ -82,10 +82,6 @@ def create():
                 db.execute("INSERT INTO custom_cards (user_id, std_card_id, person, action, obj) VALUES (?,?,?,?,?)", user_id, i, person, action, obj);
         return redirect("/savedcards")
 
-
-        user_id = session["user_id"]
-        cards = db.execute("SELECT * FROM custom_cards JOIN standard_cards ON custom_cards.std_card_id = standard_cards.std_card_id WHERE custom_cards.user_id = ?", user_id)
-
     else:
         user_id = session["user_id"]
         cards = db.execute("SELECT * FROM standard_cards")
