@@ -14,6 +14,11 @@ nav .navbar-brand .blue {
     font-weight: bold;
 }
 
+/* Centers text on input form */
+.center-text {
+    text-align: center;
+}
+
 nav .navbar-brand .red {
     color: #ea433b;
 }
