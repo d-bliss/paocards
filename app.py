@@ -57,46 +57,17 @@ def create():
     print(request.form)
     if request.method == "POST":
         user_id = session["user_id"]
-
-        '''db.execute("INSERT INTO custom_cards (user_id, std_card_id, person, action, obj) VALUES (1,1,'Trump', 'Cat', 'Dog')");'''
-
-        #creat and store a list your custom cards
-        '''temp_deck = db.execute("SELECT standard_cards.std_card_id, custom_cards.cust_card_id, custom_cards.user_id, custom_cards.person, custom_cards.action, custom_cards.obj FROM standard_cards JOIN custom_cards ON standard_cards.std_card_id = custom_cards.std_card_id AND custom_cards.user_id = :user_id", user_id=user_id)'''
-        '''temp_deck = list(range(52))
-        for card in cards:'''
-
-        #for i in temp_deck:
-        for i in range(52):
+        deck = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52]
+        for i in deck:
             person = request.form.get(f"person_{i}") or ""
             action = request.form.get(f"action_{i}") or ""
             obj = request.form.get(f"obj_{i}") or ""
             db.execute("INSERT INTO custom_cards (user_id, std_card_id, person, action, obj) VALUES (?,?,?,?,?)", user_id, i, person, action, obj);
         return redirect("/savedcards")
-
     else:
         cards = db.execute("SELECT * FROM standard_cards")
         return render_template("create.html", cards=cards)
 
-
-'''
-@app.route("/creating", methods=["GET", "POST"])
-@login_required
-def create():
-      user_id = session["user_id"]
-
-      # Insert form data into database
-        db.execute(
-            "INSERT INTO custom_cards (user_id, , shares, price, date) VALUES (?, ?, ?, ?, ?)",
-            user_id, stock["symbol"], shares, stock["price"], date
-        )
-
-    return redirect("/savedcards")
-
-
-    else:
-        cards = db.execute("SELECT * FROM standard_cards")
-        return render_template("create.html", cards=cards)
-'''
 
 @app.route("/savedcards")
 @login_required
