@@ -58,7 +58,7 @@ def create():
     if request.method == "POST":
         user_id = session["user_id"]
         std_card_id = 1
-        db.execute("INSERT INTO custom_cards (user_id, std_card_id, person, action, obj) VALUES (1,1,"Trump","Dog","Cat")");
+        db.execute("INSERT INTO custom_cards (user_id, std_card_id, person, action, obj) VALUES (1,1,'Trump', 'Cat', 'Dog')");
         #creat and store a list your custom cards
         """temp_deck = db.execute("SELECT standard_cards.std_card_id, custom_cards.cust_card_id, custom_cards.user_id, custom_cards.person, custom_cards.action, custom_cards.obj FROM standard_cards JOIN custom_cards ON standard_cards.std_card_id = custom_cards.std_card_id AND custom_cards.user_id = :user_id", user_id=user_id)
         for card in temp_deck:
