@@ -62,7 +62,7 @@ def create():
 
         #creat and store a list your custom cards
         '''temp_deck = db.execute("SELECT standard_cards.std_card_id, custom_cards.cust_card_id, custom_cards.user_id, custom_cards.person, custom_cards.action, custom_cards.obj FROM standard_cards JOIN custom_cards ON standard_cards.std_card_id = custom_cards.std_card_id AND custom_cards.user_id = :user_id", user_id=user_id)'''
-        temp_deck = range(52)
+        temp_deck = list(range(52))
         for card in temp_deck:
             person = request.form.get(f"person_{card.std_card_id}") or ""
             action = request.form.get(f"action_{card.std_card_id}") or ""
