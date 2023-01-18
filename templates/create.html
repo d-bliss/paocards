@@ -11,7 +11,7 @@ Create
     <div class="form-group">
         <label for="{{ card.user_id }}-person">{{ card.rank }} of {{ card.suit }} -
             Person</label>
-        <input placeholder="person" type="text" class="form-control" name="person_{{ card.std_card_id }}" value="{{ request.form.get('person_' ~ card.std_card_id ,'') }}">
+        <input placeholder="Person" type="text" class="form-control" name="person_{{ card.std_card_id }}" value="{{ request.form.get('person_' ~ card.std_card_id ,'') }}">
     </div>
     <div class="form-group">
         <label for="{{ card.user_id }}-action">{{ card.rank }} of {{ card.suit }} -
