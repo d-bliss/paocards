@@ -9,8 +9,8 @@ Create
 <form action="/create" method="post" style="display:block" id="cards-form">
     {% for person in persons %}
         <input placeholder="{{ person }}" type="text" class="form-control"
-            name="person_{{ card.std_card_id }}"
-            value="{{ }}">
+            name="person"
+            value="{{ person}}">
     {% endfor %}
     {% for card in cards %}
     <div class="form-group">
