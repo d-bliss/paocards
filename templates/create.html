@@ -26,10 +26,11 @@ Create
     {% endfor %}
     <button class="btn btn-primary" type="submit">Save</button>
 </form>
-
+<!-- This script tag is used to define the cardsData variable which will be used by the app.js file -->
 <script>
     const cardsData = {{ cards| tojson | safe }};
 </script>
+<!-- This script tag is used to include the app.js file which contains the javascript code that will populate the input fields with data from the cardsData variable -->
 <script src="{{ url_for('static', filename='app.js') }}"></script>
 {% endblock %}
 
