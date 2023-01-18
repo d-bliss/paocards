@@ -73,7 +73,7 @@ def create():
                     db.execute("UPDATE custom_cards SET action = ? WHERE user_id = ? AND std_card_id = ?", action, user_id, i)
                 if obj:
                     db.execute("UPDATE custom_cards SET obj = ? WHERE user_id = ? AND std_card_id = ?", obj, user_id, i);
-
+                    
         else:
             for i in deck:
                 person = request.form.get(f"person_{i}") or ""

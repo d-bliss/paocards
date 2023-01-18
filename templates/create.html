@@ -5,7 +5,6 @@ Create
 {% endblock %}
 
 {% block main %}
-<div class="col-4">
 <h1 class="text-danger">Create Cards</h1>
 <form action="/create" method="post" style="display:block" id="cards-form">
     {% for card in cards %}
@@ -30,31 +29,5 @@ Create
     {% endfor %}
     <button class="btn btn-primary" type="submit">Save</button>
 </form>
-</div>
-
-<div class="col-8">
-    <h1 class="text-success">Your Saved Cards</h1>
-    <table class="table table-active">
-        <thead>
-            <tr>
-                <th scope="col">Card</th>
-                <th scope="col">Person</th>
-                <th scope="col">Action</th>
-                <th scope="col">Object</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for card in custom_cards %}
-            <tr>
-                <td>{{ card.rank }} of {{ card.suit }}</td>
-                <td>{{ card.person }}</td>
-                <td>{{ card.action }}</td>
-                <td>{{ card.obj }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
-
 {% endblock %}
 
