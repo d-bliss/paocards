@@ -1,5 +1,5 @@
 const cards = cardsData;
-
+// Javascript that 
 cards.forEach((card) => {
     const personInput = document.querySelector(
         `input[name='person_${card.std_card_id}']`
