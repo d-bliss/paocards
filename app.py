@@ -63,15 +63,17 @@ def create():
         cursor.execute("SELECT CASE WHEN EXISTS (SELECT user_id FROM custom_cards WHERE user_id = ?) THEN 'TRUE' ELSE 'FALSE' END;",(user_id,))
         result = cursor.fetchone()[0]
         if result == 'TRUE':
-            # code to execute if user already exists in custom_cards table
+            for i in deck:
+                person = request.form.get(f"person_{i}") or ""
+                action = request.form.get(f"action_{i}") or ""
+                obj = request.form.get(f"obj_{i}") or ""
+                db.execute("REPLACE INTO custom_cards (user_id, std_card_id, person, action, obj) VALUES (?,?,?,?,?)", user_id, i, person, action, obj);
         else:
-            # code to execute if user does not exist in custom_cards table
-
-        for i in deck:
-            person = request.form.get(f"person_{i}") or ""
-            action = request.form.get(f"action_{i}") or ""
-            obj = request.form.get(f"obj_{i}") or ""
-            db.execute("INSERT or REPLACE INTO custom_cards (user_id, std_card_id, person, action, obj) VALUES (?,?,?,?,?)", user_id, i, person, action, obj);
+            for i in deck:
+                person = request.form.get(f"person_{i}") or ""
+                action = request.form.get(f"action_{i}") or ""
+                obj = request.form.get(f"obj_{i}") or ""
+                db.execute("INSERT INTO custom_cards (user_id, std_card_id, person, action, obj) VALUES (?,?,?,?,?)", user_id, i, person, action, obj);
         return redirect("/savedcards")
     else:
         cards = db.execute("SELECT * FROM standard_cards")
