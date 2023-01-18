@@ -8,21 +8,21 @@ cards.forEach((card) => {
         `input[name='person_${card.std_card_id}']`
     );
     personInput.value = card.person;
-    personInput.classList.add("red-text");
+    personInput.classList.add("bold-text");
 
 
     const actionInput = document.querySelector(
         `input[name='action_${card.std_card_id}']`
     );
     actionInput.value = card.action;
-    actionInput.classList.add("red-text");
+    actionInput.classList.add("bold-text");
 
 
     const objInput = document.querySelector(
         `input[name='obj_${card.std_card_id}']`
     );
     objInput.value = card.obj;
-    objInput.classList.add("red-text");
+    objInput.classList.add("bold-text");
 
 });
 

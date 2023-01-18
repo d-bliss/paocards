@@ -9,7 +9,7 @@ nav .navbar-brand .blue {
 }
 
 /* Colors the javascrip created text on the create cards input form */
-.red-text {
+.bold-text {
     color: #8B0000;
     font-weight: bold;
 }
