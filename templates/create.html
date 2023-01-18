@@ -8,7 +8,9 @@ Create
 <h1 class="text-danger">Create Cards</h1>
 <form action="/create" method="post" style="display:block" id="cards-form">
     {% for person in persons %}
-        <p>person</p>
+        <input placeholder="{{ person }}" type="text" class="form-control"
+            name="person_{{ card.std_card_id }}"
+            value="{{ }}">
     {% endfor %}
     {% for card in cards %}
     <div class="form-group">
