@@ -60,7 +60,8 @@ def create():
 
         #check if user has already user_id in custom_cards table
         results = db.execute("SELECT CASE WHEN EXISTS (SELECT user_id FROM custom_cards WHERE user_id = ?) THEN 'TRUE' ELSE 'FALSE' END;",(user_id,))
-        print(results)
+        result = results.fetchone()
+        print(result)
         if results == 'TRUE':
             for i in deck:
                 person = request.form.get(f"person_{i}") or ""
