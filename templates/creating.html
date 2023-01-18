@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Create Custom Cards
+{% endblock %}
+
+{% block main %}
+
+<form action="{{ url_for('save_custom_cards') }}" method="post">
+    {% for card in cards %}
+    <label for="{{ card.rank }}-{{ card.suit }}-person">{{ card.rank }} of {{
+        card.suit }} - Person</label>
+    <input type="text" name="{{ card.rank }}-{{ card.suit }}-person"
+        id="{{ card.rank }}-{{ card.suit }}-person">
+    <br>
+    <label for="{{ card.rank }}-{{ card.suit }}-action">{{ card.rank }} of {{
+        card.suit }} - Action</label>
+    <input type="text" name="{{ card.rank }}-{{ card.suit }}-action"
+        id="{{ card.rank }}-{{ card.suit }}-action">
+    <br>
+    <label for="{{ card.rank }}-{{ card.suit }}-obj">{{ card.rank }} of {{
+        card.suit }} - Object</label>
+    <input type="text" name="{{ card.rank }}-{{ card.suit }}-obj"
+        id="{{ card.rank }}-{{ card.suit }}-obj">
+    <br><br>
+    {% endfor %}
+    <input type="submit" value="Save Custom Cards">
+</form>
+{% endblock %}

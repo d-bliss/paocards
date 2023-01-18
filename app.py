@@ -50,7 +50,24 @@ def index():
     return render_template("index.html")
 
 
+@app.route("/create", methods=["GET", "POST"])
+@login_required
+def create():
+    if request.method == "POST":
+        user_id = session["user_id"]
+        for card in db.execute("SELECT * FROM standard_cards"):
+        person = request.form.get(f"{card.rank}-{card.suit}-person") or ""
+        action = request.form.get(f"{card.rank}-{card.suit}-action") or ""
+        obj = request.form.get(f"{card.rank}-{card.suit}-obj") or ""
+        db.execute("INSERT INTO custom_cards (user_id, std_card_id, person, action, obj) VALUES (?,?,?,?,?)", (user_id, card.std_card_id, person, action, obj))
+        return redirect("/savedcards")
+    else:
+        ards = db.execute("SELECT * FROM standard_cards")
+return render_template("create.html", cards=cards)
 
+
+
+'''
 @app.route("/create", methods=["GET", "POST"])
 @login_required
 def create():
@@ -72,6 +89,7 @@ def create():
     else:
         cards = db.execute("SELECT * FROM standard_cards")
         return render_template("create.html", cards=cards)
+'''
 
 '''
 @app.route("/creating", methods=["GET", "POST"])
