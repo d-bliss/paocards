@@ -16,12 +16,12 @@ Create
     <div class="form-group">
         <label for="{{ card.user_id }}-action">{{ card.rank }} of {{ card.suit }} -
             Action</label>
-        <input placeholder="Action" type="text" class="form-control center-text" name="action_{{ card.std_card_id }}" value="{{ request.form.get('action_' ~ card.std_card_id ,'') }}">
+        <input placeholder="Action" type="text" class="form-half form-control center-text" name="action_{{ card.std_card_id }}" value="{{ request.form.get('action_' ~ card.std_card_id ,'') }}">
     </div>
     <div class="form-group">
         <label for="{{ card.user_id }}-object">{{ card.rank }} of {{ card.suit }} -
             Object</label>
-        <input placeholder="Object" type="text" class="form-control center-text" name="obj_{{ card.std_card_id }}" value="{{ request.form.get('obj_' ~ card.std_card_id ,'') }}">
+        <input placeholder="Object" type="text" class="form-half form-control center-text" name="obj_{{ card.std_card_id }}" value="{{ request.form.get('obj_' ~ card.std_card_id ,'') }}">
     </div>
     {% endfor %}
     <button class="btn btn-primary" type="submit">Save</button>
