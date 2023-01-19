@@ -148,24 +148,22 @@ def logout():
     return redirect("/")
 
 
-"""
 @app.route("/play", methods=["GET", "POST"])
-@login_required
 def play():
-    #Test user for each card.
-    # Process form submission
-    if request.method == "POST" :
-        symbol = request.form.get("symbol")
+    if request.method == "GET":
+        user_id = session["user_id"]
+        cards = db.execute("SELECT * FROM custom_cards WHERE user_id = ? ORDER BY std_card_id", user_id)
+        return render_template("play.html", cards=cards)
+    elif card is None:
+            return apology("No saved cards please go to the Create Cards Page", 400)
+    elif request.method == "POST":
+        if "Flip" in request.form:
+            # Handle logic for flipping the card to show custom attributes
+        elif "Next" in request.form:
+            # Handle logic for displaying the next card
 
-        if not symbol:
-            return apology("Must give a symbol")
-
-        # Lookup stock information
 
 
-
-        if card is None:
-            return apology("Symbol does not exist", 400)
 
     else:
         #request.method == "GET":
