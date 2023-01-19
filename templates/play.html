@@ -1,15 +1,22 @@
 {% extends "layout.html" %}
 
 {% block title %}
-PLAY
+Play
 {% endblock %}
 
 {% block main %}
-<h1 class="text-primary">LETS PLAY</h1>
-<form action="/play" method="post">
-    <div class="mb-3">
-
+<h1 class="text-danger">Play Cards</h1>
+<div id="card-holder">
+    <div class="card-display">
+        <p id="card-name">{{ cards[current_index].rank }} of {{
+            cards[current_index].suit }}</p>
+        <p id="card-attributes" style="display: none;">
+            Person: {{ cards[current_index].person }}<br>
+            Action: {{ cards[current_index].action }}<br>
+            Object: {{ cards[current_index].obj }}
+        </p>
     </div>
-    <button class="btn btn-primary .me-3" type="submit">NEXT</button>
-</form>
+    <button class="btn btn-primary" id="flip-button">Flip</button>
+    <button class="btn btn-primary" id="next-button">Next</button>
+</div>
 {% endblock %}
