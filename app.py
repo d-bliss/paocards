@@ -155,25 +155,20 @@ def play():
         user_id = session["user_id"]
         # select the custom cards of the user from the db
         cards = db.execute("SELECT * FROM custom_cards WHERE user_id = ? ORDER BY std_card_id", user_id)
-        # render the play template with the cards data
-        return render_template("play.html", cards=cards)
-    # check if there are no saved cards for the user
-    elif card is None:
-            return apology("No saved cards please go to the Create Cards Page", 400)
-    elif request.method == "POST":
+        # initialize the current card index and flip flag
         current_card_index = 0
+        flip = False
+        current_card = cards[current_card_index]
+        return render_template("play.html", cards=cards, current_card=current_card, current_card_index=current_card_index, flip=flip)
+    elif request.method == "POST":
         if "Flip" in request.form:
             # Handle logic for flipping the card to show custom attributes
-            current_card = cards[current_card_index]
-            return render_template("play.html", cards=cards, current_card=current_card, flip=True)
+            flip = not flip
         elif "Next" in request.form:
             # Handle logic for displaying the next card
-            current_card_index += 1
+            current_card_index = (current_card_index + 1) % len(cards)
             current_card = cards[current_card_index]
-            return render_template("play.html", cards=cards, current_card=current_card, flip=False)
-    else:
-        return render_template("play.html", cards=cards, current_card_index=current_card_index)
-
+        return render_template("play.html", cards=cards, current_card=current_card, current_card_index=current_card_index, flip=flip)
 
 
 
