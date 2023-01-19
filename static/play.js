@@ -30,3 +30,26 @@ nextButton.addEventListener("click", () => {
                                 Action: ${currentCard.action}<br>
                                 Object: ${currentCard.obj}`;
 });
+
+// javascript for the images
+
+// Get a reference to the image and button elements
+var image = document.getElementById("card-image");
+var button = document.getElementById("next-button");
+
+// create an array containing the file names of the images
+var card_images = ["ace_of_hearts.png", "two_of_hearts.png", "three_of_hearts.png", ...];
+
+// create a variable to keep track of the current image index
+var currentIndex = 0;
+
+// Add a click event listener to the button
+button.addEventListener("click", function() {
+  // increment the current index
+  currentIndex++;
+  if (currentIndex >= card_images.length) {
+    currentIndex = 0;
+  }
+  // update the src attribute of the image
+  image.src = "{{ url_for('static', filename='playing-cards/') }}" + card_images[currentIndex];
+});
