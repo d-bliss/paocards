@@ -6,9 +6,7 @@ let isFlipped = {{ flip }};
 const cardName = document.querySelector("#card-name");
 cardName.innerText = `${currentCard.rank} of ${currentCard.suit}`;
 const cardAttributes = document.querySelector("#card-attributes");
-cardAttributes.innerHTML = `Person: ${currentCard.person}<br>
-                            Action: ${currentCard.action}<br>
-                            Object: ${currentCard.obj}`;
+
 
 const flipButton = document.querySelector("#flip-button");
 flipButton.addEventListener("click", () => {
