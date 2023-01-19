@@ -9,8 +9,7 @@ Play
 <div id="card-holder">
     <div class="card-display">
         <p id="card-name">{{ current_card.rank }} of {{ current_card.suit }}</p>
-        <p id="card-attributes" {% if not flip %}style="display: none;" {% endif
-            %}>
+        <p id="card-attributes" style="display: none;">
             Person: {{ current_card.person }}<br>
             Action: {{ current_card.action }}<br>
             Object: {{ current_card.obj }}
@@ -19,5 +18,6 @@ Play
     <button class="btn btn-primary" id="flip-button">Flip</button>
     <button class="btn btn-primary" id="next-button">Next</button>
 </div>
+
 <script src="{{ url_for('static', filename='play.js') }}"></script>
 {% endblock %}
