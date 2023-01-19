@@ -57,3 +57,20 @@ nav .navbar-brand .green {
 .py-5 {
     padding: 5rem !important;
 }
+
+/* Custom CSS for our /play route page */
+.card-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#card-name {
+    font-size: 3rem;
+    text-align: center;
+}
+
+#card-attributes {
+    font-size: 2rem;
+    text-align: center;
+}
