@@ -162,14 +162,10 @@ def play():
         elif "Next" in request.form:
             # Handle logic for displaying the next card
 
-
-
-
     else:
         #request.method == "GET":
         # Render form for stock quote
         return render_template("index.html")
-"""
 
 
 
