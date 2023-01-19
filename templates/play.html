@@ -8,12 +8,12 @@ Play
 <h1 class="text-danger">Play Cards</h1>
 <div id="card-holder">
     <div class="card-display">
-        <p id="card-name">{{ cards[current_index].rank }} of {{
-            cards[current_index].suit }}</p>
-        <p id="card-attributes" style="display: none;">
-            Person: {{ cards[current_index].person }}<br>
-            Action: {{ cards[current_index].action }}<br>
-            Object: {{ cards[current_index].obj }}
+        <p id="card-name">{{ current_card.rank }} of {{ current_card.suit }}</p>
+        <p id="card-attributes" {% if not flip %}style="display: none;" {% endif
+            %}>
+            Person: {{ current_card.person }}<br>
+            Action: {{ current_card.action }}<br>
+            Object: {{ current_card.obj }}
         </p>
     </div>
     <button class="btn btn-primary" id="flip-button">Flip</button>
