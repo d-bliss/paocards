@@ -93,7 +93,7 @@ def play():
         # get the user_id from the session
         user_id = session["user_id"]
         # select the custom cards of the user from the db
-        cards = db.execute("SELECT * FROM custom_cards WHERE user_id = ? ORDER BY std_card_id", user_id)
+        cards = db.execute("SELECT custom_cards.*, standard_cards.suit, standard_cards.rank FROM custom_cards JOIN standard_cards ON custom_cards.std_card_id = standard_cards.std_card_id WHERE custom_cards.user_id = ? ORDER BY custom_cards.std_card_id", user_id)
         current_card_index = 0
         current_card = cards[current_card_index]
         return render_template("play.html", current_card=current_card, current_card_index=current_card_index)
