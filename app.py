@@ -161,11 +161,8 @@ def play():
             # Handle logic for flipping the card to show custom attributes
         elif "Next" in request.form:
             # Handle logic for displaying the next card
-
     else:
-        #request.method == "GET":
-        # Render form for stock quote
-        return render_template("index.html")
+        return render_template("play.html", cards=cards, current_card_index=current_card_index)
 
 
 
