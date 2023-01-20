@@ -17,6 +17,7 @@ const flipButton = document.querySelector("#flip-button");
 flipButton.addEventListener("click", () => {
     isFlipped = !isFlipped;
     cardAttributes.style.display = isFlipped ? "block" : "none";
+    image.src = isFlipped ? "{{ url_for('static', filename='playing-cards/custom/' + current_card.img_path) }}" : "{{ url_for('static', filename='playing-cards/' + card_images[0]) }}";
 });
 
 // Select the element with id "next-button"
@@ -29,6 +30,7 @@ nextButton.addEventListener("click", () => {
     cardAttributes.innerHTML = `Person: ${currentCard.person}<br>
                                 Action: ${currentCard.action}<br>
                                 Object: ${currentCard.obj}`;
+    image.src = "{{ url_for('static', filename='playing-cards/' + card_images[currentCardIndex]) }}";
 });
 
 
