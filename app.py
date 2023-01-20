@@ -106,7 +106,7 @@ def play():
             # Handle logic for displaying the next card
             current_card_index = (current_card_index + 1) % len(cards)
             current_card = cards[current_card_index]
-        return render_template("play.html", cards=cards, current_card=current_card, current_card_index=current_card_index, flip=flip)
+        return render_template("play.html", cards=cards, current_card=current_card, current_card_index=current_card_index, flip=flip, card_images=card_images)
 
 
 @app.route("/savedcards")
