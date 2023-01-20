@@ -26,7 +26,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Configure CS50 Library to use SQLite database
-db = SQL("sqlite:///xfinal.db")
+db = SQL("sqlite:////xfinal.db")
 
 
 @app.after_request
@@ -221,5 +221,4 @@ def register():
 
     else:
         return render_template("register.html")
-
 
