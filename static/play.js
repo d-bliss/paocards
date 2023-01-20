@@ -31,7 +31,7 @@ nextButton.addEventListener("click", () => {
                                 Object: ${currentCard.obj}`;
 });
 
-/*
+
 // javascript for the images
 
 // Get a reference to the image and button elements
@@ -55,4 +55,3 @@ button.addEventListener("click", function() {
   // update the src attribute of the image
   image.src = "{{ url_for('static', filename='playing-cards/') }}" + card_images[currentIndex];
 });
-*/
