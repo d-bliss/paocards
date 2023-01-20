@@ -87,7 +87,26 @@ def create():
         cards = db.execute("SELECT standard_cards.*, custom_cards.person, custom_cards.action, custom_cards.obj FROM standard_cards LEFT JOIN custom_cards ON standard_cards.std_card_id=custom_cards.std_card_id and custom_cards.user_id=?", user_id)
         return render_template("create.html", cards=cards)
 
+@app.route("/play", methods=["GET", "POST"])
+def play():
+    current_card_index = 0
+    current_card = None
+    flip = False
+    if request.method == "GET":
+        # get the user_id from the session
+        user_id = session["user_id"]
+        # select the custom cards of the user from the db
+        cards = db.execute("SELECT custom_cards.*, standard_cards.suit, standard_cards.rank FROM custom_cards JOIN standard_cards ON custom_cards.std_card_id = standard_cards.std_card_id WHERE custom_cards.user_id = ? ORDER BY custom_cards.std_card_id", user_id)
+        current_card = cards[current_card_index]
+        return render_template("play.html", current_card=current_card, current_card_index=current_card_index, flip=flip, card_images=card_images)
 
+    elif request.method == "POST":
+        if "Flip" in request.form:
+            flip = not flip
+        elif "Next" in request.form:
+            current_card_index = (current_card_index + 1) % len(cards)
+            current_card = cards[current_card_index]
+        return render_template("play.html", cards=cards, current_card=current_card, current_card_index=current_card_index, flip=flip, card_images=card_images)
 
 
 @app.route("/savedcards")
