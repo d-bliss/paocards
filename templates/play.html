@@ -10,8 +10,6 @@ Play
     <div class="card-display">
     <img id="card-image"
         src="{{ url_for('static', filename='playing-cards/' + card_images[0]) }}">
-
-        <p id="card-name">{{ current_card.rank }} of {{ current_card.suit }}</p>
         <p id="card-attributes" style="display: none;">
             Person: {{ current_card.person }}<br>
             Action: {{ current_card.action }}<br>
