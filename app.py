@@ -112,8 +112,12 @@ def play():
         if "Flip" in request.form:
             flip = not flip
         elif "Next" in request.form:
-            current_card_index = (current_card_index + 1) % len(cards)
-            current_card = cards[current_card_index]
+            for index in card_indexes:
+                
+
+
+            #current_card_index = (current_card_index + 1) % len(cards)
+            #current_card = cards[current_card_index]
             flip = False
         return render_template("play.html", cards=cards, current_card=current_card, current_card_index=current_card_index, flip=flip, card_images=card_images, card_indexes=card_indexes)
 
