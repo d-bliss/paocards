@@ -97,8 +97,8 @@ def play():
     # get the user_id from the session
     user_id = session["user_id"]
 
-    # create a variaible for a list of all the standard cards std_card_id values
-    
+    # create a variaible for a list of all the standard cards std_card_id values (1-52)
+    card_indexes = db.execute(SELECT std_card_id FROM standard_cards, user_id)
 
     # select the custom cards of the user from the db
     cards = db.execute("SELECT custom_cards.*, standard_cards.suit, standard_cards.rank, standard_cards.img_path FROM custom_cards JOIN standard_cards ON custom_cards.std_card_id = standard_cards.std_card_id WHERE custom_cards.user_id = ? ORDER BY custom_cards.std_card_id", user_id)
@@ -106,7 +106,7 @@ def play():
     if request.method == "GET":
         current_card = cards[current_card_index]
         flip = False
-        return render_template("play.html", current_card=current_card, current_card_index=current_card_index, flip=flip, card_images=card_images)
+        return render_template("play.html", current_card=current_card, current_card_index=current_card_index, flip=flip, card_images=card_images, card_indexes=card_indexes)
 
     elif request.method == "POST":
         if "Flip" in request.form:
@@ -115,7 +115,7 @@ def play():
             current_card_index = (current_card_index + 1) % len(cards)
             current_card = cards[current_card_index]
             flip = False
-        return render_template("play.html", cards=cards, current_card=current_card, current_card_index=current_card_index, flip=flip, card_images=card_images)
+        return render_template("play.html", cards=cards, current_card=current_card, current_card_index=current_card_index, flip=flip, card_images=card_images, card_indexes=card_indexes)
 
 
 @app.route("/savedcards")
