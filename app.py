@@ -158,13 +158,11 @@ def login():
 def logout():
 
     # Log user out.
-
     # Forget any user_id
     session.clear()
-
+    session["card_index"] = 0
     # Redirect user to login form
     return redirect("/")
-
 
 
 
