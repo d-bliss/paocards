@@ -95,7 +95,7 @@ def play():
         session["card_index"] = 0
     card_index = session["card_index"]
     user_id = session["user_id"]
-    card_images = [AC.png, 2C.png, 3C.png, 4C.png, 5C.png, 6C.png, 7C.png, 8C.png, 9C.png, 10C.png, JC.png, QC.png, KC.png, AD.png, 2D.png, 3D.png, 4D.png, 5D.png, 6D.png, 7D.png, 8D.png, 9D.png, 10D.png, JD.png, QD.png, KD.png, AH.png, 2H.png, 3H.png, 4H.png, 5H.png, 6H.png, 7H.png, 8H.png, 9H.png, 10H.png, JH.png, QH.png, KH.png, AS.png, 2S.png, 3S.png, 4S.png, 5S.png, 6S.png, 7S.png, 8S.png, 9S.png, 10S.png, JS.png, QS.png, KS.png]
+    card_images = [AC, 2C, 3C, 4C, 5C, 6C, 7C, 8C, 9C, 10C, JC, QC, KC, AD, 2D, 3D, 4D, 5D, 6D, 7D, 8D, 9D, 10D, JD, QD, KD, AH, 2H, 3H, 4H, 5H, 6H, 7H, 8H, 9H, 10H, JH, QH, KH, AS, 2S, 3S, 4S, 5S, 6S, 7S, 8S, 9S, 10S, JS, QS, KS]
     current_card = card_index
     if request.method == "POST":
         if request.form.get("Flip"):
