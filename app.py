@@ -97,6 +97,9 @@ def play():
     # get the user_id from the session
     user_id = session["user_id"]
 
+    # create a variaible for a list of all the standard cards std_card_id values
+    
+
     # select the custom cards of the user from the db
     cards = db.execute("SELECT custom_cards.*, standard_cards.suit, standard_cards.rank, standard_cards.img_path FROM custom_cards JOIN standard_cards ON custom_cards.std_card_id = standard_cards.std_card_id WHERE custom_cards.user_id = ? ORDER BY custom_cards.std_card_id", user_id)
 
