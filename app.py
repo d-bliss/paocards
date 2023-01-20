@@ -88,38 +88,23 @@ def create():
         return render_template("create.html", cards=cards)
 
 @app.route("/play", methods=["GET", "POST"])
+@login_required
 def play():
-    current_card_index = 0
-    current_card = None
-    flip = False
-    card_images = ["AC.png", "2C.png", "3C.png", "4C.png", "5C.png", "6C.png", "7C.png", "8C.png", "9C.png", "10C.png", "JC.png", "QC.png", "KC.png", "AD.png", "2D.png", "3D.png", "4D.png", "5D.png", "6D.png", "7D.png", "8D.png", "9D.png", "10D.png", "JD.png", "QD.png", "KD.png", "AH.png", "2H.png", "3H.png", "4H.png", "5H.png", "6H.png", "7H.png", "8H.png", "9H.png", "10H.png", "JH.png", "QH.png", "KH.png", "AS.png", "2S.png", "3S.png", "4S.png", "5S.png", "6S.png", "7S.png", "8S.png", "9S.png", "10S.png", "JS.png", "QS.png", "KS.png"]
-
-    # get the user_id from the session
     user_id = session["user_id"]
+    card_index = 0
+    card_images = ["AC.png", "2C.png", "3C.png", "4C.png", "5C.png", "6C.png", "7C.png", "8C.png", "9C.png", "10C.png", "JC.png", "QC.png", "KC.png", "AD.png", "2D.png", "3D.png", "4D.png", "5D.png", "6D.png", "7D.png", "8D.png", "9D.png", "10D.png", "JD.png", "QD.png", "KD.png", "AH.png", "2H.png", "3H.png", "4H.png", "5H.png", "6H.png", "7H.png", "8H.png", "9H.png", "10H.png", "JH.png", "QH.png", "KH.png", "AS.png", "2S.png", "3S.png", "4S.png", "5S.png", "6S.png", "7S.png", "8S.png", "9S.png", "10S.png", "JS.png", "QS.png", "KS.png"]
+    if request.method == "POST":
+        if request.form.get("Flip"):
+            # retrieve custom card attributes from custom_cards table
+            current_card = db.execute("SELECT person, action, obj FROM custom_cards WHERE user_id = ? AND std_card_id = ?", user_id, card_index + 1)
+        elif request.form.get("Next"):
+            card_index += 1
+            current_card = db.execute("SELECT person, action, obj FROM custom_cards WHERE user_id = ? AND std_card_id = ?", user_id, card_index + 1)
+    else:
+        # retrieve custom card attributes from custom_cards table
+        current_card = db.execute("SELECT person, action, obj FROM custom_cards WHERE user_id = ? AND std_card_id = ?", user_id, card_index + 1)
+    return render_template("play.html", card_index=card_index, card_images=card_images, current_card=current_card)
 
-    # create a variaible for a list of all the standard cards std_card_id values (1-52)
-    card_indexes = db.execute("SELECT std_card_id FROM standard_cards")
-
-    card_index = 1
-
-    # select the custom cards of the user from the db
-    cards = db.execute("SELECT custom_cards.*, standard_cards.suit, standard_cards.rank, standard_cards.img_path FROM custom_cards JOIN standard_cards ON custom_cards.std_card_id = standard_cards.std_card_id WHERE custom_cards.user_id = ? ORDER BY custom_cards.std_card_id", user_id)
-
-    if request.method == "GET":
-        current_card = cards[card_index]
-        flip = False
-        return render_template("play.html", current_card=current_card, current_card_index=current_card_index, flip=flip, card_images=card_images, card_indexes=card_indexes)
-
-    elif request.method == "POST":
-        if "Flip" in request.form:
-            flip = not flip
-        elif "Next" in request.form:
-            card_index = (card_index + 1)
-            current_card = cards[card_index]
-            #current_card_index = (current_card_index + 1) % len(cards)
-            #current_card = cards[current_card_index]
-            flip = False
-        return render_template("play.html", cards=cards, current_card=current_card, current_card_index=current_card_index, flip=flip, card_images=card_images, card_indexes=card_indexes)
 
 
 @app.route("/savedcards")
