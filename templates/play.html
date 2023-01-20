@@ -18,8 +18,13 @@ Play
             Object: {{ current_card.obj }}
         </p>
     </div>
-    <button name="Flip" class="btn btn-primary" id="flip-button">Flip</button>
-    <button name="Next" class="btn btn-primary" id="next-button">Next</button>
+    <form method="post">
+        <button name="Flip" type="submit" class="btn btn-primary"
+            id="flip-button">Flip</button>
+        <button name="Next" type="submit" class="btn btn-primary"
+            id="next-button">Next</button>
+    </form>
+
 </div>
 <script src="{{ url_for('static', filename='play.js') }}"></script>
 {% endblock %}
