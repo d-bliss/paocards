@@ -95,7 +95,8 @@ def play():
         session["card_index"] = 0
     card_index = session["card_index"]
     user_id = session["user_id"]
-    card_images = [img_path for img_path, in db.execute("SELECT img_path FROM standard_cards").fetchall()]
+    card_images_cursor = db.execute("SELECT img_path FROM standard_cards")
+    card_images = [img_path for img_path, in card_images_cursor.fetchall()]
     current_card = None
     if request.method == "POST":
         if request.form.get("Flip"):
