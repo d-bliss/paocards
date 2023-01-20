@@ -103,6 +103,7 @@ def play():
                 current_card = db.execute("SELECT person, action, obj FROM custom_cards WHERE user_id = ? AND std_card_id = ?", user_id, card_index + 1)
             elif request.form.get("Next"):
                 card_index += 1
+                session["card_index"] = card_index
                 current_card = db.execute("SELECT person, action, obj FROM custom_cards WHERE user_id = ? AND std_card_id = ?", user_id, card_index + 1)
         else:
             # retrieve custom card attributes from custom_cards table
