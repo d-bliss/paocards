@@ -100,7 +100,7 @@ def play():
     # create a variaible for a list of all the standard cards std_card_id values (1-52)
     card_indexes = db.execute("SELECT std_card_id FROM standard_cards", user_id)
 
-    card_index = 1
+    #card_index = 1
 
     # select the custom cards of the user from the db
     cards = db.execute("SELECT custom_cards.*, standard_cards.suit, standard_cards.rank, standard_cards.img_path FROM custom_cards JOIN standard_cards ON custom_cards.std_card_id = standard_cards.std_card_id WHERE custom_cards.user_id = ? ORDER BY custom_cards.std_card_id", user_id)
