@@ -106,7 +106,7 @@ def play():
     cards = db.execute("SELECT custom_cards.*, standard_cards.suit, standard_cards.rank, standard_cards.img_path FROM custom_cards JOIN standard_cards ON custom_cards.std_card_id = standard_cards.std_card_id WHERE custom_cards.user_id = ? ORDER BY custom_cards.std_card_id", user_id)
 
     if request.method == "GET":
-        current_card = cards[current_card_index]
+        current_card = cards[card_index]
         flip = False
         return render_template("play.html", current_card=current_card, current_card_index=current_card_index, flip=flip, card_images=card_images, card_indexes=card_indexes)
 
