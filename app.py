@@ -98,7 +98,7 @@ def play():
     user_id = session["user_id"]
 
     # create a variaible for a list of all the standard cards std_card_id values (1-52)
-    card_indexes = db.execute(SELECT std_card_id FROM standard_cards, user_id)
+    card_indexes = db.execute("SELECT std_card_id FROM standard_cards", user_id)
 
     card_index = 1
 
