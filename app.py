@@ -115,7 +115,7 @@ def play():
             flip = not flip
         elif "Next" in request.form:
             card_index = (card_index + 1)
-
+            current_card = cards[card_index]
             #current_card_index = (current_card_index + 1) % len(cards)
             #current_card = cards[current_card_index]
             flip = False
