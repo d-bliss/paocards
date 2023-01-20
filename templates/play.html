@@ -8,12 +8,12 @@ Play
 <h1 class="text-danger">Test Yourself</h1>
 <div id="card-holder">
     <div class="card-display">
-    <img id="card-image"
-        src="{{ url_for('static', filename='playing-cards/' + card_images[current_card_index]) }}">
+        <img id="card-image"
+            src="{{ url_for('static', filename='playing-cards/' + card_images[current_card_index]) }}">
         <p id="card-attributes" style="display: none;">
-            Person: {{ current_card.person }}<br>
-            Action: {{ current_card.action }}<br>
-            Object: {{ current_card.obj }}
+                Person: {{ current_card.person }}<br>
+                Action: {{ current_card.action }}<br>
+                Object: {{ current_card.obj }}
         </p>
     </div>
     <form method="post">
