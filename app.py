@@ -104,9 +104,9 @@ def play():
         return render_template("play.html", current_card=current_card, current_card_index=current_card_index, flip=flip, card_images=card_images)
 
     elif request.method == "POST":
-        if "Flip" in request.form:
+        if request.form.get("Flip"):
             flip = not flip
-        elif "Next" in request.form:
+        elif request.form.get("Next"):
             current_card_index = (current_card_index + 1) % len(cards)
             current_card = cards[current_card_index]
             flip = False
