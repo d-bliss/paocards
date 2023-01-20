@@ -87,6 +87,7 @@ def create():
         cards = db.execute("SELECT standard_cards.*, custom_cards.person, custom_cards.action, custom_cards.obj FROM standard_cards LEFT JOIN custom_cards ON standard_cards.std_card_id=custom_cards.std_card_id and custom_cards.user_id=?", user_id)
         return render_template("create.html", cards=cards)
 
+
 @app.route("/play", methods=["GET", "POST"])
 @login_required
 def play():
@@ -111,8 +112,6 @@ def play():
                 session["card_index"] = card_index
                 current_card = db.execute("SELECT person, action, obj FROM custom_cards WHERE user_id = ? AND std_card_id = ?", user_id, card_index)
     return render_template("play.html", card_index=card_index, card_images=card_images, current_card=current_card)
-
-
 
 
 
