@@ -17,12 +17,13 @@ Play
     <div class="card-display">
         <img id="card-image"
             src="{{ url_for('static', filename='playing-cards/' + card_images[card_index]) }}">
-        <p id="card-attributes" style="display: none;">
-                Person: {{ current_card.person }}<br>
-                Action: {{ current_card.action }}<br>
-                Object: {{ current_card.obj }}
-            </p>
     </div>
 </div>
+<p id="card-attributes" style="display">
+    Person: {{ current_card.person }}<br>
+    Action: {{ current_card.action }}<br>
+    Object: {{ current_card.obj }}
+</p>
+<p>Where is my list?</p>
 <!--<script src="{{ url_for('static', filename='play.js') }}"></script>-->
 {% endblock %}

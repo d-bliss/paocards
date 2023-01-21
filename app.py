@@ -99,9 +99,9 @@ def play(card_index):
     current_card = db.execute("SELECT person, action, obj FROM custom_cards WHERE user_id = ? AND std_card_id = ?", user_id, card_index)
     print("This is the", current_card)
     #current_card = card_index
-    if request.method == "POST":
-        if request.form.get("Flip"):
-            current_card = db.execute("SELECT person, action, obj FROM custom_cards WHERE user_id = ? AND std_card_id = ?", user_id, card_index)
+
+    '''if request.form.get("Flip"):
+        current_card = db.execute("SELECT person, action, obj FROM custom_cards WHERE user_id = ? AND std_card_id = ?", user_id, card_index)'''
     if card_index < 52:
         print("After plus 1")
         print(card_index)
