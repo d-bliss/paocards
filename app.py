@@ -55,23 +55,18 @@ def index():
 @login_required
 def create():
     if request.method == "POST":
-        # get the user_id from the session
         user_id = session["user_id"]
-        # create a list of card numbers
         deck = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52]
 
-        # check if user has already user_id in custom_cards table
+        #check if user has already user_id in custom_cards table
         results = db.execute("SELECT EXISTS (SELECT * FROM custom_cards WHERE user_id = ?) as exists_result", (user_id,))[0]['exists_result']
 
-        # if user_id is found in the custom_cards table
         if results == 1:
-            # loop through the deck
             for i in deck:
-                # get the person, action, and obj values from the form
                 person = request.form.get(f"person_{i}") or ""
                 action = request.form.get(f"action_{i}") or ""
                 obj = request.form.get(f"obj_{i}") or ""
-                # update the custom_cards table for the current user_id and card number
+                '''db.execute("UPDATE custom_cards SET person = ?, action = ?, obj = ? WHERE user_id = ? AND std_card_id = ?", person, action, obj, user_id, i);'''
                 if person:
                     db.execute("UPDATE custom_cards SET person = ? WHERE user_id = ? AND std_card_id = ?", person, user_id, i)
                 if action:
@@ -79,23 +74,18 @@ def create():
                 if obj:
                     db.execute("UPDATE custom_cards SET obj = ? WHERE user_id = ? AND std_card_id = ?", obj, user_id, i);
 
-        # if user_id is not found in the custom_cards table
         else:
-            # loop through the deck
             for i in deck:
-                # get the person, action, and obj values from the form
                 person = request.form.get(f"person_{i}") or ""
                 action = request.form.get(f"action_{i}") or ""
                 obj = request.form.get(f"obj_{i}") or ""
-                # insert the data into the custom_cards table
                 db.execute("INSERT INTO custom_cards (user_id, std_card_id, person, action, obj) VALUES (?,?,?,?,?)", user_id, i, person, action, obj);
         return redirect("/savedcards")
     else:
-        # get the user_id from the session
         user_id = session["user_id"]
-        # get the cards from the database, including custom cards for this user
-        cards = db.execute("SELECT standard_cards.*, custom_cards.person, custom_cards.action, custom_cards.obj FROM standard_cards LEFT JOIN custom_cards ON standard_cards.std_card_id=
-
+        #cards = db.execute("SELECT * FROM standard_cards")
+        cards = db.execute("SELECT standard_cards.*, custom_cards.person, custom_cards.action, custom_cards.obj FROM standard_cards LEFT JOIN custom_cards ON standard_cards.std_card_id=custom_cards.std_card_id and custom_cards.user_id=?", user_id)
+        return render_template("create.html", cards=cards)
 
 
 @app.route("/play/<int:card_index>", methods=["GET", "POST"])
