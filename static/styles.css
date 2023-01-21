@@ -3,6 +3,11 @@ nav .navbar-brand {
     font-size: xx-large;
 }
 
+.PAO-Cards-title {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+}
 
 #next-button:hover {
     background-color: darkblue;
