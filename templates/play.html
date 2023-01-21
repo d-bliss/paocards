@@ -8,11 +8,11 @@ Play
 <h1 class="text-danger">Test Yourself</h1>
 <div id="card-holder">
     <form method="post">
+        <a name="Flip" type="submit" class="btn btn-primary" id="flip-button"
+            onclick="document.getElementById('card-attributes').style.display = 'block'">Show</a>
         <a href="{{ url_for('play', card_index=card_index+1) }}" type="submit"
             role="button" id="next-button" class="btn btn-primary"
             onclick="document.getElementById('card-attributes').style.display = 'none'">Next</a>
-        <a name="Flip" type="submit" class="btn btn-primary" id="flip-button"
-            onclick="document.getElementById('card-attributes').style.display = 'block'">Show</a>
     </form>
     <div class="card-display">
         <img id="card-image"

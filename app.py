@@ -99,12 +99,9 @@ def play(card_index):
 
     '''if request.form.get("Flip"):
         current_card = db.execute("SELECT person, action, obj FROM custom_cards WHERE user_id = ? AND std_card_id = ?", user_id, card_index)'''
-    if card_index < 52:
-        print("After plus 1")
-        print(card_index)
-    else:
+    if card_index == 52:
         flash("Congratulations, that's the end of the deck!")
-        card_index = 1
+        card_index = 0
     return render_template("play.html", card_index=card_index, card_images=card_images, current_card=current_card)
 
 
