@@ -21,10 +21,6 @@ Play
         <!--<button name="Next" type="submit" class="btn btn-primary" id="next-button">Next</button>-->
         <a href="{{ url_for('play', card_index=card_index+1) }}" type="submit" role="button" id="next-button">Next</a>
 
-        $('#next-button').click(function(){
-        window.location.href='{{ url_for('play', card_index=card_index+1) }}';
-        });
-
 
     </form>
 
