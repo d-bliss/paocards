@@ -9,10 +9,10 @@ Play
 <div id="card-holder">
     <form method="post">
         <a name="Flip" type="submit" class="btn btn-primary" id="flip-button"
-            onclick="document.getElementById('card-attributes').style.display = 'block'">Show</a>
+            onclick="document.getElementById('card-attributes').style.display = 'block'">Show PAO</a>
         <a href="{{ url_for('play', card_index=card_index+1) }}" type="submit"
             role="button" id="next-button" class="btn btn-primary"
-            onclick="document.getElementById('card-attributes').style.display = 'none'">Next</a>
+            onclick="document.getElementById('card-attributes').style.display = 'none'">Next Card</a>
     </form>
     <div class="card-display">
         <img id="card-image"
