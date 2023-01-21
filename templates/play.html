@@ -9,7 +9,7 @@ Play
 <div id="card-holder">
     <div class="card-display">
         <img id="card-image"
-            src="{{ url_for(filename='playing-cards/' + card_images[card_index]) }}">
+            src="{{ url_for('static', filename='playing-cards/' + card_images[card_index]) }}">
         <p id="card-attributes" style="display: none;">
                 Person: {{ current_card.person }}<br>
                 Action: {{ current_card.action }}<br>
@@ -21,7 +21,7 @@ Play
             id="flip-button">Flip</button>
         <!--<button name="Next" type="submit" class="btn btn-primary"
             id="next-button">Next</button>-->
-            <a href="{{ url_for('static', filename='play/' + card_images[card_index]) }}" class="btn btn-primary" role="button" id="next-button">Next</a>
+            <a href="{{ url_for(filename='play/' + [card_index]) }}" class="btn btn-primary" role="button" id="next-button">Next</a>
 
     </form>
 
