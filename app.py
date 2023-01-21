@@ -126,7 +126,7 @@ def login():
 
     # Forget any user_id
     session.clear()
-
+    session["card_index"] = 0
     # User reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
         # Ensure username was submitted
