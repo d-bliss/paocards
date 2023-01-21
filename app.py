@@ -98,6 +98,7 @@ def play(card_index):
     card_images = ["AC.png", "2C.png", "3C.png", "4C.png", "5C.png", "6C.png", "7C.png", "8C.png", "9C.png", "10C.png", "JC.png", "QC.png", "KC.png", "AD.png", "2D.png", "3D.png", "4D.png", "5D.png", "6D.png", "7D.png", "8D.png", "9D.png", "10D.png", "JD.png", "QD.png", "KD.png", "AH.png", "2H.png", "3H.png", "4H.png", "5H.png", "6H.png", "7H.png", "8H.png", "9H.png", "10H.png", "JH.png", "QH.png", "KH.png", "AS.png", "2S.png", "3S.png", "4S.png", "5S.png", "6S.png", "7S.png", "8S.png", "9S.png", "10S.png", "JS.png", "QS.png", "KS.png"]
     #current_card = card_index
     current_card = db.execute("SELECT person, action, obj FROM custom_cards WHERE user_id = ? AND std_card_id = ?", user_id, card_index)
+    str_cardimg = str(card_index)
     if request.method == "POST":
         if request.form.get("Flip"):
             current_card = db.execute("SELECT person, action, obj FROM custom_cards WHERE user_id = ? AND std_card_id = ?", user_id, card_index)
@@ -107,7 +108,7 @@ def play(card_index):
             else:
                 flash("No more cards to show.")
                 card_index = 0
-    return render_template("play.html", card_index=card_index, card_images=card_images, current_card=current_card)
+    return render_template("play.html", card_index=card_index, card_images=card_images, current_card=current_card, str_cardimg=str_cardimg)
 
 
 @app.route("/savedcards")

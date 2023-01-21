@@ -21,7 +21,7 @@ Play
             id="flip-button">Flip</button>
         <!--<button name="Next" type="submit" class="btn btn-primary"
             id="next-button">Next</button>-->
-            <a href="{{ url_for('play', filename='/' + card_images[card_index]) }}" type="submit" role="button" id="next-button">Next</a>
+            <a href="{{ url_for('play', filename='/' + str_cardimg) }}" type="submit" role="button" id="next-button">Next</a>
 
     </form>
 
