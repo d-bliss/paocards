@@ -20,7 +20,7 @@ Play
             src="{{ url_for('static', filename='playing-cards/' + card_images[card_index]) }}">
     </div>
 </div>
-<p id="card-attributes" style="display">
+<p id="card-attributes" style="display: none">
     Person: {{ current_card[0]['person'] }}<br>
     Action: {{ current_card[0]['action'] }}<br>
     Object: {{ current_card[0]['obj'] }}
