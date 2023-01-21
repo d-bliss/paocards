@@ -102,14 +102,15 @@ def play(card_index):
     '''if request.method == "POST":
         if request.form.get("Flip"):
             current_card = db.execute("SELECT person, action, obj FROM custom_cards WHERE user_id = ? AND std_card_id = ?", user_id, card_index)'''
-    if request.form.get("Next"):
-        if card_index + 1 < 51:
-            card_index += 1
-            print("After plus 1")
-            print(card_index)
-        else:
-            flash("No more cards to show.")
-            card_index = 0
+
+    if card_index + 1 < 51:
+        card_index += 1
+        print("After plus 1")
+        print(card_index)
+    else:
+        flash("No more cards to show.")
+        card_index = 0
+        print("0 now after no more cards")
     return render_template("play.html", card_index=card_index, card_images=card_images, current_card=current_card)
 
 
