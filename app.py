@@ -104,7 +104,7 @@ def play(card_index):
         print(card_index)
     else:
         flash("Congratulations, that's the end of the deck!")
-        card_index = 0
+        card_index = 1
     return render_template("play.html", card_index=card_index, card_images=card_images, current_card=current_card)
 
 
