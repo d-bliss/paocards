@@ -28,46 +28,47 @@
 <body>
 
     <nav class="navbar navbar-expand-md navbar-light">
-        <div class="container-fluid">
-            <a class="navbar-brand text-center" href="/">
+        <div class="container-fluid d-flex justify-content-center">
+            <a class="navbar-brand" href="/">
                 <h1 class="PAO-Cards-title">PAO CARDS</h1>
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                data-target="#navbarNav" aria-controls="navbarNav"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mt-3">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/play/1">Play</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/create">Create Cards</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/savedcards">Saved Cards</a>
-                    </li>
-                </ul>
-                {% if session["user_id"] %}
-                <ul class="navbar-nav ml-auto mt-3">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout">Log Out</a>
-                    </li>
-                </ul>
-                {% else %}
-                <ul class="navbar-nav ml-auto mt-3">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/register">Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">Log In</a>
-                    </li>
-                </ul>
-                {% endif %}
-            </div>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mt-3">
+                <li class="nav-item">
+                    <a class="nav-link" href="/play/1">Play</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/create">Create Cards</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/savedcards">Saved Cards</a>
+                </li>
+            </ul>
+            {% if session["user_id"] %}
+            <ul class="navbar-nav ml-auto mt-3">
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Log Out</a>
+                </li>
+            </ul>
+            {% else %}
+            <ul class="navbar-nav ml-auto mt-3">
+                <li class="nav-item">
+                    <a class="nav-link" href="/register">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Log In</a>
+                </li>
+            </ul>
+            {% endif %}
         </div>
     </nav>
+
 
 
     {% if get_flashed_messages() %}
