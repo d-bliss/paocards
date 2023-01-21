@@ -20,7 +20,7 @@ Play
         <button name="Flip" type="submit" class="btn btn-primary"
             id="flip-button">Flip</button>
         <!--<button name="Next" type="submit" class="btn btn-primary" id="next-button">Next</button>-->
-        <a class="btn btn-primary href="{{ url_for('play', card_index=card_index+1) }}" type="submit" role="button" id="next-button">Next</a>
+        <a href="{{ url_for('play', card_index=card_index+1) }}" type="submit" role="button" id="next-button">Next</a>
     </form>
 
 </div>
