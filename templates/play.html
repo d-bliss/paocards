@@ -8,17 +8,25 @@ Play
 <h1 class="text-danger">Test Yourself</h1>
 <div id="card-holder">
     <form method="post">
+        {# Show PAO (Person, Action, Object) when the "Flip" button is clicked
+        #}
         <a name="Flip" type="submit" class="btn btn-primary" id="flip-button"
-            onclick="document.getElementById('card-attributes').style.display = 'block'">Show PAO</a>
+            onclick="document.getElementById('card-attributes').style.display = 'block'">Show
+            PAO</a>
+        {# Move to the next card when the "Next Card" button is clicked #}
         <a href="{{ url_for('play', card_index=card_index+1) }}" type="submit"
             role="button" id="next-button" class="btn btn-primary"
-            onclick="document.getElementById('card-attributes').style.display = 'none'">Next Card</a>
+            onclick="document.getElementById('card-attributes').style.display = 'none'">Next
+            Card</a>
     </form>
     <div class="card-display">
+        {# Display the current card image #}
         <img id="card-image"
             src="{{ url_for('static', filename='playing-cards/' + card_images[card_index-1]) }}">
     </div>
 </div>
+{# Show the current card's Person, Action, and Object when "Flip" button is
+clicked #}
 <p id="card-attributes" style="display: none">
     Person: {{ current_card[0]['person'] }}<br>
     Action: {{ current_card[0]['action'] }}<br>
