@@ -102,7 +102,7 @@ def play(card_index):
         if request.form.get("Flip"):
             current_card = db.execute("SELECT person, action, obj FROM custom_cards WHERE user_id = ? AND std_card_id = ?", user_id, card_index)
         elif request.form.get("Next"):
-            if card_index + 1 < 52:
+            if card_index + 1 < len(card_images):
                 card_index += 1
             else:
                 flash("No more cards to show.")
