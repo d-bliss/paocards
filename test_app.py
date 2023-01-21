@@ -29,3 +29,7 @@ class TestPlay(unittest.TestCase):
         self.assertIn(b'Test Yourself', response)
 if __name__ == '__main__':
     unittest.main()
+
+
+#python -m unittest test_app.py
+#pytest test_app.py
