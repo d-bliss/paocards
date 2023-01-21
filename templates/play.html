@@ -19,9 +19,9 @@ Play
     </div>
 </div>
 <p id="card-attributes" style="display">
-    Person: {{ current_card.person }}<br>
-    Action: {{ current_card.action }}<br>
-    Object: {{ current_card.obj }}
+    Person: {{ current_card[0]['person'] }}<br>
+    Action: {{ current_card[0]['action'] }}<br>
+    Object: {{ current_card[0]['obj'] }}
 </p>
 <p>Where is my list?</p>
 <!--<script src="{{ url_for('static', filename='play.js') }}"></script>-->
