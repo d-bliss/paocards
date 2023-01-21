@@ -86,3 +86,11 @@ nav .navbar-brand .green {
     font-size: 2rem;
     text-align: center;
 }
+
+.navbar-brand-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+    /* Other styles if you want */
+}
