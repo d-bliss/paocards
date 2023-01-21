@@ -1,7 +1,9 @@
 /* Size for brand */
 nav .navbar-brand {
     font-size: xx-large;
+    width: 100%;
 }
+
 
 .PAO-Cards-title {
     font-size: 2em;
