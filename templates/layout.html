@@ -26,8 +26,8 @@
                 <h1 class="PAO-Cards-title">PAO Cards</h1>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse"
-                data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
+                data-target="#navbarNav" aria-controls="navbarNav"
+                aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
@@ -51,39 +51,3 @@
                 </li>
             </ul>
             {% else %}
-            <ul class="navbar-nav ml-auto mt-3">
-                <li class="nav-item">
-                    <a class="nav-link" href="/register">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/login">Log In</a>
-                </li>
-            </ul>
-            {% endif %}
-        </div>
-
-    </nav>
-
-    {% if get_flashed_messages() %}
-    <header>
-        <div class="alert alert-primary mb-0 text-center" role="alert">
-            {{ get_flashed_messages() | join(" ") }}
-        </div>
-    </header>
-    {% endif %}
-
-    <main class="container-fluid py-5 text-center">
-        {% block main %}{% endblock %}
-    </main>
-
-    <footer class="mb-5 small text-center text-muted sticky-bottom">
-        <p>Copyright PAO Cards <span id="year"></span></p>
-    </footer>
-    <script>
-        // Get the current year
-        const currentYear = new Date().getFullYear();
-        // Update the year in the copyright notice
-        document.getElementById("year").innerHTML = currentYear;
-    </script>
-</body>
-</html>
