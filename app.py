@@ -88,7 +88,7 @@ def create():
         return render_template("create.html", cards=cards)
 
 
-@app.route("/play", methods=["GET", "POST"])
+@app.route("/play/<int: card_index>'", methods=["GET", "POST"])
 @login_required
 def play():
     card_index = 0
