@@ -25,7 +25,6 @@ cards.forEach((card) => {
     objInput.classList.add("bold-text");
 });
 
-
 <script>
     // parse the cards data passed from the backend
     const cards = JSON.parse('{{ cards|tojson|safe }}');
