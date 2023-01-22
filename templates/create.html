@@ -25,12 +25,28 @@ Create
 </form>
 <!--Below is the most recent that we keep-->
 <script>
+    // parse the cards data passed from the backend
     const cards = JSON.parse('{{ cards|tojson|safe }}');
+    //iterate through each card in the "cards" array
     cards.forEach((card) => {
+        // find the input element for person by selecting it by its name attribute, which includes the std_card_id of the card
         const personInput = document.querySelector(`input[name='person_${card.std_card_id}']`);
+        // set the value property of the input element to the corresponding data from the card object
         personInput.value = card.person;
+
+        // find the input element for action by selecting it by its name attribute, which includes the std_card_id of the card
+        const actionInput = document.querySelector(`input[name='action_${card.std_card_id}']`);
+        // set the value property of the input element to the corresponding data from the card object
+        actionInput.value = card.action;
+
+        // find the input element for obj by selecting it by its name attribute, which includes the std_card_id of the card
+        const objInput = document.querySelector(`input[name='obj_${card.std_card_id}']`);
+        // set the value property of the input element to the corresponding data from the card object
+        objInput.value = card.obj;
     });
 </script>
+
+
 {% endblock %}
 
 
