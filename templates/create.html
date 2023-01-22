@@ -9,7 +9,9 @@ Create
 <form action="/create" method="post" style="display:block" id="cards-form">
     {% for card in cards %}
     <div class="form-group">
+        <!-- Label for the person input field, displaying the rank and suit of the card -->
         <label for="{{ card.user_id }}-person">{{ card.rank }} of {{ card.suit }} (Person)</label>
+        <!-- Input field for the person value, with a placeholder and class for styling, and a unique name and id for each card based on the std_card_id -->
         <input placeholder="(Person)" type="text" class="form-half form-control center-text" name="person_{{ card.std_card_id }}" id="person_{{ card.std_card_id }}>
     </div>
     <div class="form-group">
