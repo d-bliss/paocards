@@ -23,7 +23,6 @@ cards.forEach((card) => {
     );
     objInput.value = card.obj;
     objInput.classList.add("bold-text");
-
 });
 
 
