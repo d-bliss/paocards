@@ -157,7 +157,7 @@ def logout():
     # Forget any user_id
     session.clear()
 
-    # Redirect user to login form
+    # Redirect user to login formx
     return redirect("/")
 
 
