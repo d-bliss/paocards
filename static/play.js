@@ -1,3 +1,4 @@
+/*
 const cards = JSON.parse('{{ cards|tojson|safe }}');
 let currentCardIndex = {{ current_card_index }};
 let currentCard = cards[currentCardIndex];
@@ -36,4 +37,4 @@ nextButton.addEventListener("click", () => {
                                 Object: ${currentCard.obj}`;
     image.src = "{{ url_for('static', filename='playing-cards/' + cards[currentCardIndex].img_path) }}";
 });
-
+*/

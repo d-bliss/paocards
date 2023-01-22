@@ -1,3 +1,4 @@
+/*
 const cards = cardsData;
 // This code is used to populate the form inputs with data passed in the "cardsData" variable.
 // It uses the .forEach method to iterate through each card in the "cards" array and sets the value
@@ -29,3 +30,4 @@ cards.forEach((card) => {
     // parse the cards data passed from the backend
     const cards = JSON.parse('{{ cards|tojson|safe }}');
 </script>
+*/
