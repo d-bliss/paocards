@@ -44,7 +44,6 @@
                     <a class="nav-link" href="/savedcards">Saved Cards</a>
                 </li>
             </ul>
-            <!-- check if the user is logged in -->
             {% if session["user_id"] %}
             <ul class="navbar-nav ml-auto mt-3">
                 <li class="nav-item">
@@ -64,7 +63,7 @@
         </div>
 
     </nav>
-    <!-- code to display flashed messages -->
+
     {% if get_flashed_messages() %}
     <header>
         <div class="alert alert-primary mb-0 text-center" role="alert">
@@ -81,7 +80,7 @@
         <p>Copyright PAO Cards <span id="year"></span></p>
     </footer>
     <script>
-        // Javascriptet the current year
+        // Get the current year
         const currentYear = new Date().getFullYear();
         // Update the year in the copyright notice
         document.getElementById("year").innerHTML = currentYear;
