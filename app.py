@@ -56,6 +56,7 @@ def index():
 def create():
     if request.method == "POST":
         user_id = session["user_id"]
+        print(request.form)
         deck = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52]
 
         #check if user has already user_id in custom_cards table
@@ -84,6 +85,7 @@ def create():
     else:
         user_id = session["user_id"]
         cards = db.execute("SELECT standard_cards.*, custom_cards.person, custom_cards.action, custom_cards.obj FROM standard_cards LEFT JOIN custom_cards ON standard_cards.std_card_id=custom_cards.std_card_id and custom_cards.user_id=?", user_id)
+        print(cards)
         return render_template("create.html", cards=cards)
 
 
