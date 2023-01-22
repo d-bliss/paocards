@@ -10,7 +10,7 @@ Create
     {% for card in cards %}
     <div class="form-group">
         <label for="{{ card.user_id }}-person">{{ card.rank }} of {{ card.suit }} (Person)</label>
-        <input placeholder="(Person)" type="text" class="form-half form-control center-text" name="person_{{ card.std_card_id }}" value="{{ request.form.get('person_' ~ card.std_card_id ,'') }}">
+        <input placeholder="(Person)" type="text" class="form-half form-control center-text" name="person_{{ card.std_card_id }}" id="person_{{ card.std_card_id }}>
     </div>
     <div class="form-group">
         <label for="{{ card.user_id }}-action">{{ card.rank }} of {{ card.suit }} (Action)</label>
@@ -23,12 +23,14 @@ Create
     {% endfor %}
     <button class="btn btn-primary" type="submit">Save</button>
 </form>
-<!-- This script tag is used to define the cardsData variable which will be used by the app.js file -->
+<!--Below is the most recent that we keep-->
 <script>
-    const cardsData = JSON.parse('{{ cards| tojson | safe }}');
+    const cards = JSON.parse('{{ cards|tojson|safe }}');
+    cards.forEach((card) => {
+        const personInput = document.querySelector(`input[name='person_${card.std_card_id}']`);
+        personInput.value = card.person;
+    });
 </script>
-<!-- This script block assigns the value of the "cards" variable in the Flask template, parsed as JSON, to the "cardsData" constant in JavaScript. The "tojson" filter is used to convert the Flask variable to a JSON object, and the "safe" filter is used to mark the output as safe HTML to be rendered in the browser. -->
-<script src="{{ url_for('static', filename='app.js') }}"></script>
 {% endblock %}
 
 
