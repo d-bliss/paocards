@@ -23,7 +23,7 @@ Create
     {% endfor %}
     <button class="btn btn-primary" type="submit">Save</button>
 </form>
-<!--Below is the most recent that we keep-->
+<!--This script uses the .forEach() method to iterate through each card in the "cards" array and sets the value of the input fields with the corresponding data from the card object (card.person, card.action, card.obj) if there is any saved previously. If there is no saved date the form is filled with the placeholder values. The input fields are selected by their name attribute, which includes the std_card_id of the card.-->
 <script>
     // parse the cards data passed from the backend
     const cards = JSON.parse('{{ cards|tojson|safe }}');
@@ -45,8 +45,6 @@ Create
         objInput.value = card.obj;
     });
 </script>
-
-
 {% endblock %}
 
 
