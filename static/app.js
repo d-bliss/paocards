@@ -3,6 +3,23 @@ let currentCardIndex = {{ current_card_index }};
 let currentCard = cards[currentCardIndex];
 let isFlipped = {{ flip }};
 
+// Select the container element where the cards will be displayed
+const cardsContainer = document.querySelector('.cards-container');
+
+// Loop through the cardsData array
+for (let i = 0; i < cardsData.length; i++) {
+    // Create a new div element for each card
+    let cardDiv = document.createElement('div');
+    // Add a class to the div element for styling
+    cardDiv.classList.add('card');
+    // Set the card's rank and suit as the div's innerHTML
+    cardDiv.innerHTML = `${cardsData[i].rank} of ${cardsData[i].suit}`;
+    // Add the person, action and object to the card
+    cardDiv.innerHTML += `<br> Person: ${cardsData[i].person} <br> Action: ${cardsData[i].action} <br> Object: ${cardsData[i].obj}`;
+    // Append the card div to the container element
+    cardsContainer.appendChild(cardDiv);
+}
+
 // Select the element with id "card-name"
 const cardName = document.querySelector("#card-name");
 // Set the text of the element to the current card's rank and suit
