@@ -126,6 +126,7 @@ nav .navbar-brand .green {
 #card-attributes {
     font-size: 2rem;
     text-align: center;
+    padding: 1rem;
 }
 
 .navbar-brand-wrapper {
