@@ -126,11 +126,11 @@ def login():
     if request.method == "POST":
         # Ensure username was submitted
         if not request.form.get("username"):
-            return apology("must provide username", 403)
+            return apology("Yeah, if you could provide a username that would be great", 403)
 
         # Ensure password was submitted
         elif not request.form.get("password"):
-            return apology("must provide password", 403)
+            return apology("Yeah, if you could provide a password that would be great", 403)
 
         # Query database for username
         rows = db.execute("SELECT * FROM users WHERE username = :username",
