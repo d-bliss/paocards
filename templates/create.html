@@ -12,15 +12,15 @@ Create
         <!-- Label for the person input field, displaying the rank and suit of the card -->
         <label for="{{ card.user_id }}-person">{{ card.rank }} of {{ card.suit }} (Person)</label>
         <!-- Input field for the person value, with a placeholder and class for styling, and a unique name and id for each card based on the std_card_id -->
-        <input placeholder="(Person)" type="text" class="form-half form-control center-text" name="person_{{ card.std_card_id }}" id="person_{{ card.std_card_id }}>
+        <input placeholder="(Person)" type="text" class="bold-text form-half form-control center-text" name="person_{{ card.std_card_id }}" id="person_{{ card.std_card_id }}>
     </div>
     <div class="form-group">
         <label for="{{ card.user_id }}-action">{{ card.rank }} of {{ card.suit }} (Action)</label>
-        <input placeholder="(Action)" type="text" class="form-half form-control center-text" name="action_{{ card.std_card_id }}" id="action_{{ card.std_card_id }}">
+        <input placeholder="(Action)" type="text" class="bold-text form-half form-control center-text" name="action_{{ card.std_card_id }}" id="action_{{ card.std_card_id }}">
     </div>
     <div class="form-group">
         <label for="{{ card.user_id }}-object">{{ card.rank }} of {{ card.suit }} (Object)</label>
-        <input placeholder="(Object)" type="text" class="form-half form-control center-text" name="obj_{{ card.std_card_id }}" id="obj_{{ card.std_card_id }}">
+        <input placeholder="(Object)" type="text" class="bold-text form-half form-control center-text" name="obj_{{ card.std_card_id }}" id="obj_{{ card.std_card_id }}">
     </div>
     {% endfor %}
     <button class="btn btn-primary" type="submit">Save</button>
