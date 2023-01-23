@@ -109,24 +109,30 @@ nav .navbar-brand .green {
     padding: 1rem 0 3rem 0;
 }
 
+/* Styling for the cards PAO text box */
 .card-box {
-    padding: 10px;
-    background-color: #f5f5f5;
+    padding: 1rem;
+    background-color: #83a2eb;
     border: 1px solid #ccc;
     border-radius: 5px;
     text-align: center;
     display: inline-block;
+    border-radius: 1rem;
 }
 
+/* Is this not being used???
 #card-name {
     font-size: 3rem;
     text-align: center;
 }
+*/
 
+/* Styling for the cards Person, Action, Object text answers for each card */
 #card-attributes {
-    font-size: 2rem;
+    font-size: 1.7rem;
     text-align: center;
     padding: 1rem;
+    font-weight: bold;
 }
 
 .navbar-brand-wrapper {
