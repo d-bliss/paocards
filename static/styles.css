@@ -26,6 +26,11 @@ nav .navbar-brand .blue {
     font-weight: bold;
 }
 
+.label-bold {
+    color: #4F2F2F;
+    font-weight: bold;
+}
+
 /* Centers text on input form */
 .center-text {
     text-align: center;
