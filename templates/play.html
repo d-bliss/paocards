@@ -24,7 +24,7 @@ Play
             src="{{ url_for('static', filename='playing-cards/' + card_images[card_index-1]) }}">
     </div>
 </div>
-{# Show the current card's Person, Action, and Object when "Flip" button is
+{# Show the current card's Person, Action, and Object when "Show PAO" button is
 clicked #}
 <p id="card-attributes" style="display: none">
     Person: {{ current_card[0]['person'] }}<br>
