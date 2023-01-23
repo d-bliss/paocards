@@ -24,11 +24,13 @@ nav .navbar-brand .blue {
 .bold-text {
     color: #4F2F2F;
     font-weight: bold;
+    font-size: 1.3rem;
 }
 
 .label-bold {
-    color: grey;
+    color: #626964;
     font-weight: bold;
+    font-size: 1.3rem;
 }
 
 /* Centers text on input form */
