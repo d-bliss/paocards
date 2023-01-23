@@ -78,7 +78,7 @@ nav .navbar-brand .green {
 
 /* Changes alignmet of the saved cards table text */
 .text-center {
-    text-align: left !important;
+    text-align: center !important;
 }
 
 .text-success {
