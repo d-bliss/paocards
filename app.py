@@ -174,25 +174,25 @@ def register():
         # Ensure password was submitted
         password = request.form.get("password")
         if not password:
-            return apology("Yeah, if you could provide a password that would be great", 400)
+            return apology("must provide password", 400)
 
         # Ensure password confirmation was submitted
         elif not request.form.get("confirmation"):
-            return apology("Yeah, I'm going to have to ask you to go ahead and confirm your password for me. If you could do that for me that would be great", 400)
+            return apology("must confirm password", 400)
 
         # Ensure password and password confirmation match
         elif password != request.form.get("confirmation"):
-            return apology("Yeah, if you could go ahead and make sure your passwords match that would be great", 400)
+            return apology("passwords must match", 400)
 
         # Check if password meets complexity requirements
         if not re.match(r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$", password):
-            return apology("Yeah, so if your password contained at least one lowercase letter, one uppercase letter, one digit, and one symbol, and be at least 8 characters that would be great", 400)
+            return apology("password must contain at least one lowercase letter, one uppercase letter, one digit, and one symbol, and be at least 8 characters long", 400)
 
         # Check if username already exists in database
         rows = db.execute("SELECT * FROM users WHERE username = :username",
                         username=request.form.get("username"))
         if rows:
-            return apology("Yeah, I'm gonna have to ask you to go ahead and pick a username that doesn't already exists", 400)
+            return apology("username already exists", 400)
 
         # Hash password
         hash = generate_password_hash(password)
