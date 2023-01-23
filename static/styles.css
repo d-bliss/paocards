@@ -115,6 +115,7 @@ nav .navbar-brand .green {
     border: 1px solid #ccc;
     border-radius: 5px;
     text-align: center;
+    display: inline-block;
 }
 
 #card-name {
