@@ -10,6 +10,12 @@ nav .navbar-brand {
     text-align: center;
 }
 
+.text-primary {
+    font-size: 4em;
+    font-weight: bold;
+    text-align: center;
+}
+
 #next-button:hover {
     background-color: darkblue;
 }
