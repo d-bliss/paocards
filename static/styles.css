@@ -101,6 +101,11 @@ nav .navbar-brand .green {
 }
 
 /* Custom CSS for our /play route page */
+.card-image {
+    max-width: 200px ;
+    max-height: 300px;
+}
+
 .card-display {
     display: flex;
     flex-direction: column;
