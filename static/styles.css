@@ -4,7 +4,6 @@ nav .navbar-brand {
     width: 100%;
 }
 
-
 .PAO-Cards-title {
     font-size: 2em;
     font-weight: bold;
@@ -15,18 +14,26 @@ nav .navbar-brand {
     background-color: darkblue;
 }
 
+.create-cards-heading {
+    color: red;
+    font-weight: bold;
+    font-size: 3rem;
+    padding: 1rem
+}
+
 /* Colors for brand */
 nav .navbar-brand .blue {
     color: #537fbe;
 }
 
-/* Colors the javascrip created text on the create cards input form */
+/* Color and size settings for the javascrip created text on the create cards input form */
 .bold-text {
     color: #4F2F2F;
     font-weight: bold;
-    font-size: 1.3rem;
+    font-size: 1.15rem;
 }
 
+/* Color and size settings for the javascrip created text on the create cards labels */
 .label-bold {
     color: #626964;
     font-weight: bold;
