@@ -4,9 +4,14 @@ nav .navbar-brand {
     width: 100%;
 }
 
+/* Style the navbar links*/
 .navbar-nav .nav-link {
     font-size: 1.2em;
     font-weight: bold;
+}
+
+.title {
+    color: black !important;
 }
 
 .PAO-Cards-title {
