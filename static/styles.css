@@ -83,6 +83,7 @@ nav .navbar-brand .green {
 
 .text-success {
     text-align: center !important;
+    font-style: bold;
 }
 
 .py-5 {
