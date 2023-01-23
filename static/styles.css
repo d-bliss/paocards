@@ -88,6 +88,13 @@ nav .navbar-brand .green {
     padding: .5rem;
 }
 
+.text-danger {
+    text-align: center !important;
+    font-size: 3em;
+    font-weight: bold;
+    padding: .5rem;
+}
+
 .py-5 {
     padding: 5rem !important;
 }
