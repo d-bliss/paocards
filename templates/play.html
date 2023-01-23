@@ -21,7 +21,7 @@ Play
     <div class="card-display">
         {# Display the current card image #}
         <img id="card-image"
-            src="{{ url_for('static', filename='playing-cards/' + card_images[card_index-1]) }}">
+            src="{{ url_for('static', filename='playing-cards/' + card_images[card_index-1]) }}"width="200" height="300">
     </div>
 </div>
 {# Show the current card's Person, Action, and Object when "Show PAO" button is
