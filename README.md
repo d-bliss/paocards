@@ -2,7 +2,7 @@
 
 ### Video Demo: https://youtu.be/1ZBIkUQGAX8
 
-### [Try out the live version of PAO Cards yourself here: https://bliss.pythonanywhere.com/](https://bliss.pythonanywhere.com/)
+## [Click here to view a live version of PAO Cards(https://bliss.pythonanywhere.com/)
 
 <img src="static/pao-homepage.png" alt="PAO Cards Hompage Image" width="400"/>
 
