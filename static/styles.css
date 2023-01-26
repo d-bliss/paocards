@@ -1,37 +1,3 @@
-/* Size for brand */
-nav .navbar-brand {
-    font-size: xx-large;
-    width: 100%;
-}
-
-/* Style the navbar links*/
-.navbar-nav .nav-link {
-    font-size: 1.5em;
-    font-weight: bold;
-}
-
-
-.PAO-Cards-title {
-    font-size: 2em;
-    font-weight: bold;
-    text-align: center;
-}
-
-.text-primary {
-    font-size: 4em;
-    font-weight: bold;
-    text-align: center;
-}
-
-#next-button:hover {
-    background-color: darkblue;
-}
-
-/* Colors for brand */
-nav .navbar-brand .blue {
-    color: #537fbe;
-}
-
 /* Color and size settings for the javascrip created text on the create cards input form */
 .bold-text {
     color: #4F2F2F;
@@ -73,7 +39,12 @@ nav .navbar-brand .blue {
 
 /* Changes alignmet of the saved cards table text */
 .text-center {
-    text-align: center !important;
+    text-align: center;
+}
+
+/* Changes alignmet of the saved cards th or (tale headings) to center */
+th {
+    text-align: center
 }
 
 .text-success {
@@ -129,10 +100,42 @@ nav .navbar-brand .blue {
     font-weight: bold;
 }
 
-.navbar-brand-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 50%;
-    /* Other styles if you want */
+/* Navbar Stylings */
+
+.navbar-brand {
+    color: #0d6efd !important;
+    font-weight: bold;
+    font-size: 6rem;
+    margin: 1rem;
+}
+
+.logout {
+    margin-right: 1rem;
+}
+
+.layout-title {
+    font-size: 6rem;
+    font-weight: bold;
+    color: #0d6efd;
+    text-align: center;
+    padding: 2rem;
+}
+
+.nav-link {
+    color: #0d6efd !important;
+    font-weight: bold;
+    font-size: 2rem;
+    margin: 2rem 0 0 0;
+}
+
+.navbar-default {
+    background-color:#fff!important;
+    border-color: #fff!important;
+}
+
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:focus,
+.navbar-default .navbar-nav>.active>a:hover {
+    color: #555;
+    background-color: #fff !important;
 }
