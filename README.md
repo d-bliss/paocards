@@ -15,6 +15,8 @@ This application is built using a combination of programming languages and frame
 
 The main structure of the application is built using Flask, which allows for the creation of web applications using Python and Jinja. Data is stored in a SQLite database, consisting of three tables: a user table for storing user information, a standard cards table for storing information about the standard deck, and a custom cards table for storing user-created PAO parameters for each card. Additionally, the flask.url_for() method was used to dynamically generate URLs throughout the application, making it easier to change or update the URLs without hardcoding them.
 
+[Click here for explanation of flask-url_for technique used in this project](https://www.educba.com/flask-url_for/)
+
 ### **Technologies used:**
 - Python
 - Flask
