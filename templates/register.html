@@ -8,17 +8,22 @@
     <form action="/register" method="post">
         <!--Register form with username, password, and password confirmation input boxes-->
         <div class="mb-3">
-            <input autocomplete="off" autofocus class="form-control mx-auto w-auto"
+            <input autocomplete="off" autofocus class="form-control bold-text form-half mx-auto w-auto"
                 id="username" name="username" placeholder="Username" type="text">
         </div>
         <div class="mb-3">
-            <input class="form-control mx-auto w-auto" id="password" name="password"
+            <input class="form-control bold-text form-half mx-auto w-auto" id="password" name="password"
                 placeholder="Password" type="password">
         </div>
         <div class="mb-3">
-            <input class="form-control mx-auto w-auto" id="password"
+            <input class="form-control mx-auto bold-text form-half w-auto" id="password"
                 name="confirmation" placeholder="Confirm Password" type="password">
         </div>
         <button class="btn btn-primary" type="submit">Register</button>
     </form>
+    <img src="{{ url_for('static', filename='pao.jpg') }}" alt="Exploding PAO Image"
+        style="max-width: 30%;">
+        <br>
+        <h4>Mastering Memory with the Person-Action-Object System</h4>
+        <br>
 {% endblock %}
