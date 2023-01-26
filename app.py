@@ -56,7 +56,6 @@ def index():
 def create():
     if request.method == "POST":
         user_id = session["user_id"]
-        print(request.form)
         deck = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52]
 
         #check if user has already user_id in custom_cards table
@@ -73,19 +72,18 @@ def create():
                 if action:
                     db.execute("UPDATE custom_cards SET action = ? WHERE user_id = ? AND std_card_id = ?", action, user_id, i)
                 if obj:
-                    db.execute("UPDATE custom_cards SET obj = ? WHERE user_id = ? AND std_card_id = ?", obj, user_id, i);
+                    db.execute("UPDATE custom_cards SET obj = ? WHERE user_id = ? AND std_card_id = ?", obj, user_id, i)
 
         else:
             for i in deck:
                 person = request.form.get(f"person_{i}") or ""
                 action = request.form.get(f"action_{i}") or ""
                 obj = request.form.get(f"obj_{i}") or ""
-                db.execute("INSERT INTO custom_cards (user_id, std_card_id, person, action, obj) VALUES (?,?,?,?,?)", user_id, i, person, action, obj);
+                db.execute("INSERT INTO custom_cards (user_id, std_card_id, person, action, obj) VALUES (?,?,?,?,?)", user_id, i, person, action, obj)
         return redirect("/savedcards")
     else:
         user_id = session["user_id"]
         cards = db.execute("SELECT standard_cards.*, custom_cards.person, custom_cards.action, custom_cards.obj FROM standard_cards LEFT JOIN custom_cards ON standard_cards.std_card_id=custom_cards.std_card_id and custom_cards.user_id=?", user_id)
-        print(cards)
         return render_template("create.html", cards=cards)
 
 
@@ -96,13 +94,18 @@ def play(card_index):
     card_images = ["AC.png", "2C.png", "3C.png", "4C.png", "5C.png", "6C.png", "7C.png", "8C.png", "9C.png", "10C.png", "JC.png", "QC.png", "KC.png", "AD.png", "2D.png", "3D.png", "4D.png", "5D.png", "6D.png", "7D.png", "8D.png", "9D.png", "10D.png", "JD.png", "QD.png", "KD.png", "AH.png", "2H.png", "3H.png", "4H.png", "5H.png", "6H.png", "7H.png", "8H.png", "9H.png", "10H.png", "JH.png", "QH.png", "KH.png", "AS.png", "2S.png", "3S.png", "4S.png", "5S.png", "6S.png", "7S.png", "8S.png", "9S.png", "10S.png", "JS.png", "QS.png", "KS.png"]
     current_card = db.execute("SELECT person, action, obj FROM custom_cards WHERE user_id = ? AND std_card_id = ?", user_id, card_index)
 
-    if card_index < 52:
-        print("After plus 1")
-        print(card_index)
+    #if users user_is is not in custom_cards table, redirect to create page, and prompt user to create cards
+    results = db.execute("SELECT EXISTS (SELECT * FROM custom_cards WHERE user_id = ?) as exists_result", (user_id,))[0]['exists_result']
+    if results == 0:
+        flash("Please create your custom cards before playing.")
+        return redirect("/create")
     else:
-        flash("Congratulations, that's the end of the deck!")
-        card_index = 0
-    return render_template("play.html", card_index=card_index, card_images=card_images, current_card=current_card)
+        if card_index < 52:
+            print(card_index)
+        else:
+            flash("Congratulations, that's the end of the deck!", "alert-success")
+            card_index = 0
+        return render_template("play.html", card_index=card_index, card_images=card_images, current_card=current_card)
 
 
 @app.route("/savedcards")
@@ -186,7 +189,7 @@ def register():
 
         # Check if password meets complexity requirements
         if not re.match(r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$", password):
-            return apology("Yeah, so if your password contained at least one lowercase letter, one uppercase letter, one digit, and one symbol, and be at least 8 characters that would be great", 400)
+            return apology("Yeah, so if your password contained at least one lowercase letter, one uppercase letter, one digit, and one special character (such as !, @, #, $, %, ^, &, *, etc), and be at least 8 characters long that would be great", 400)
 
         # Check if username already exists in database
         rows = db.execute("SELECT * FROM users WHERE username = :username",
