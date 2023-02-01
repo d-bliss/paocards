@@ -7,7 +7,7 @@
 <img src="static/pao-homepage.png" alt="PAO Cards Hompage Image" width="400"/>
 
 ## **Description:**
-This web app project is my final submission to Harvard CS50's Introduction to Computer Science course. See the “About CS50” section below for more information about this course.
+This web app project is my [final submission to Harvard CS50's Introduction to Computer Science course](https://certificates.cs50.io/1e590aa7-4356-4228-a693-e9aacc7761e4.png?size=letter). See the “About CS50” section below for more information about this course.
 
 PAO Cards is a web application designed to help users improve their memory skills by using the Person-Action-Object (PAO) system. The PAO system is a widely accepted technique for mastering the memorization of long random numbers and playing card decks used by memory champions around the world. By grouping cards together into unique images and storing them in memory palaces, users can easily recall them at a later time.
 
